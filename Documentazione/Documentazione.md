@@ -127,9 +127,25 @@ The result was what I expected since the beginning, our approach worked very wel
 |**Note**    |Pagina per l’aggiunta di un nuovo appartamento.|
 |**Sub-ID**  | Requisito                                      |
 |**001**     | È prima necessario essere un utente proprietario.                  |
-|**002**     | Richiesta obbligatoria dei seguenti campi:- Regione e Paese- Una o più foto- Pianta dell’appartamento.- Numero di locali- Posteggio (booleano + ev. quantità)- Prezzo (alta e bassa stagione, settimanale, mensile, annuale)- Spese- Accessori (lista)- Ammobiliato (booleano)- Fumatori (booleano)- Animali (booleano)- Bambini (booleano)- Ubicazione + carta- Disponibilità- Commenti|
+|**002**     | Richiesta obbligatoria dei seguenti campi:
+||Regione e Paese|
+||Una o più foto|
+||Pianta dell’appartamento.|
+||Numero di locali|
+||Posteggio (booleano + ev. quantità)|
+||Prezzo (alta e bassa stagione, settimanale, mensile, annuale)|
+||Spese|
+||Accessori (lista)|
+||Ammobiliato (booleano)|
+||Fumatori (booleano)|
+||Animali (booleano)|
+||Bambini (booleano)|
+||Ubicazione + carta|
+||Disponibilità|
+||Commenti|
 |**003**     |Aggiunta automatica del nome, cognome, tel privato e email del proprietario.          | 
 |**004**     | Salvataggio nel DB.  |
+
 
 
 |ID          |REQ-006                                         |
