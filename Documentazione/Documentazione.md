@@ -155,8 +155,8 @@ The result was what I expected since the beginning, our approach worked very wel
 |**Versione**|1.0                                             |
 |**Note**    |Pagina che mostra le specifiche per ogni appartamento.|
 |**Sub-ID**  | Requisito                                      |
-|**001**     | Per utenti non registrati:
- - Visione di tutti i campi definiti nel REQ-005 tranne i contatti del proprietario.|
+|**001**     | Per utenti non registrati:|
+|| - Visione di tutti i campi definiti nel REQ-005 tranne i contatti del proprietario.|
  
  
 |ID          |REQ-007                                         |
@@ -166,7 +166,7 @@ The result was what I expected since the beginning, our approach worked very wel
 |**Versione**|1.0                                             |
 |**Note**    |Specifiche di un utente non registrato.|
 |**Sub-ID**  | Requisito                                      |
-|**001**     | Può navigare liberamente per il sito senza però avere possibilità di richiedere di diventare proprietario di un appartamento e di visualizzare i contatti di un altro proprietario.                  |
+|**001**     | Può navigare liberamente per il sito senza però avere possibilità di richiedere di diventare proprietario di un appartamento e di visualizzare i contatti di un altro proprietario.|
 
 
 |ID          |REQ-008                                         |
@@ -198,10 +198,10 @@ The result was what I expected since the beginning, our approach worked very wel
 |**Sub-ID**  | Requisito                                      |
 |**001**     | Naviga liberamente nel sito ed è un utente proprietario.        |
 |**002**     | Gestisce gli utenti:
- - Inserimento utenti
- - Modifica utenti
- - Cancellazioni utenti
- - Visualizzazione utenti|
+|| - Inserimento utenti|
+|| - Modifica utenti|
+|| - Cancellazioni utenti|
+|| - Visualizzazione utenti|
  
  
 |ID          |REQ-011                                         |
