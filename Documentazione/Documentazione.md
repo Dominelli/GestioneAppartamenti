@@ -33,7 +33,7 @@
  - **Docente Responsabile:** Massimo Sartori
  - **Scuola:** Arti e Mestieri Trevano
  - **Sezione:** Informatica
- - **Classe:** I3AA
+ - **Classe:** I3AA / I3BB
  - **Data d’inizio:** 16.03.2018
  - **Termine della consegna:** 18.05.2018
 
