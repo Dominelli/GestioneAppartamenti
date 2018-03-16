@@ -8,7 +8,7 @@ Alessandro
 
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
-|08:20 - 16:30 |Ho lavorato sul gantt preventivo e lo ho terminato, dopodichè ho terminato il mockup della pagina di login.|                 
+|08:20 - 16:30 |Ho lavorato sul gantt preventivo e lo ho terminato, dopodichè ho terminato il mockup della pagina di login e anche quella di registrazione.|                 
 
 
 Gabriele
