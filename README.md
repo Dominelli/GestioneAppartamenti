@@ -1,4 +1,4 @@
-# Progetto Sito di Affitto di appartamenti - SAMTrevano
+# Progetto: sito di affitto appartamenti - SAMTrevano
 
 - Massimo Sartori (docente responsabile)
 
