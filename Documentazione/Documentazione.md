@@ -28,15 +28,14 @@
 
 ### Informazioni sul progetto
 
- - **Progetto svolto da:** Gionata Battaglioni, Fabio Gola,Gabriele Dominelli, Lucas Previtali
- - **Mandanti del progetto:** Luca Muggiasca
- - **Docente Responsabile:** Luca Muggiasca
+ - **Progetto svolto da:** Gabriele Dominelli, Alessandro Spagnuolo
+ - **Mandanti del progetto:** Massimo Sartori
+ - **Docente Responsabile:** Massimo Sartori
  - **Scuola:** Arti e Mestieri Trevano
  - **Sezione:** Informatica
  - **Classe:** I3AA
- - **Data d’inizio:** 10.11.2017
- - **Termine della consegna:** 19.01.2018
- - **Consegna per Espoprofessioni:** 02.03.2018
+ - **Data d’inizio:** 16.03.2018
+ - **Termine della consegna:** 18.05.2018
 
 
 ### Abstract
@@ -48,31 +47,31 @@ The result was what I expected since the beginning, our approach worked very wel
 
 ### Scopo
 
-  Lo scopo del progetto è di creare un sistema di riconoscimento facciale tramite una webcam. Questo sistema serve per quantificare il numero di persone che visitano uno stand di Espoprofessioni. Il sistema deve essere in grado di riconoscere le persone che entrano nel campo visivo della webcam.
+  Questo progetto consiste nell'implementazione di un'applicazione web che permetta di gestire l'affitto di appartamenti in Svizzera.
 
 
 ## Analisi
 
 ### Analisi del dominio
 
-  Il progetto completo verrà presentato alla prossima edizione di Espoprofessioni, perciò sarà presentato principalmente a un pubblico di ragazzi e ragazze non per forza appassionati di informatica (in generale il gli “utenti” saranno variegati). Il pubblico presente sarà lì soprattutto per vedere diverse professioni e molti saranno studenti. Per capire il funzionamento del sistema non bisogna essere per forza esperti o appassionati di informatica.
+  Il progetto completo verrà presentato principalmente a un pubblico potenzialmente senza conoscenze informatiche. Le interfaccie e le funzionalità dovranno essere intuitive e seguiranno gli standard dei siti di fama più alta.
 
   
 ### Analisi e specifica dei requisiti
 
-  Il committente richiede una pagina web che effettua un riconoscimento facciale. Una volta che la faccia viene riconosciuta dalla pagina viene salvata all`interno di una variabile e a sua volta salvata in un database. In base al numero di persone riconosciute e al tempo che le persone rimangono ferme davanti alla web cam viene redatto un grafico. Mentre un secondo grafico veiene redatto in base al numero di persone che sono state riconosciute dalla webcam e alla fascia oraria. 
+  Il committente richiede una struttura web che sia in grado di gestire l'affitto e la riservazioni di molti locali. Una volta che l'utente proprietario dell'appartamento le informazioni vengono salvate all'interno di un database. In un secondo momento altri utenti possono esplorare le specifiche dello spazio e procedere con un eventuale affitto o riservazione. 
 
   
 |ID          |REQ-001                                         |
 |------------|------------------------------------------------|
-|**Nome**    |Face Detection                                  |
+|**Nome**    |Pagina principale                               |
 |**Priorità**|1                                               |
 |**Versione**|1.0                                             |
-|**Note**    |                                                |
+|**Note**    |Pagina di default della struttura del sito.|
 |**Sub-ID**  | Requisito                                      |
-|**001**     | Creazione macchina virtuale                    |
-|**002**     | Creazione pagina Web per webcam                |
-|**003**     | Creazione pagina Web per grafici               | 
+|**001**     | Sarà presente una descrizione del sito.                  |
+|**002**     | Lista degli appartamenti, 10 per volta.              |
+|**003**     | Menu a tendina per login/istrizione.              | 
 |**004**     | Creazione pagina web per gestione dell’admin.  |                
 |**005**     | Creare una banca dati                          |
 |**006**     | Ricerca di nuovi volti                         |
@@ -80,101 +79,148 @@ The result was what I expected since the beginning, our approach worked very wel
 |**008**     | Utilizzo del prodotto su RaspBerry             |
 
 
-|ID  |REQ-002                                        |
-|----|------------------------------------------------|
-|**Nome**    |Creazione macchina virtuale |
-|**Priorità**|1                     |
-|**Versione**|1.0                   |
-|**Note**    ||
-|**Sub-ID**    |Requisito |
-|**001**      | Si deve creazione macchina virtuale su “Virtual Box” |
-|**002**      | Si deve installare di XAMPP v7.0.2            |
-|**003**      | Si deve creare la struttura in cartelle che ospita i file   del progetto.           |
-  
-  
-  
-|ID  |REQ-003                                        |
-|----|------------------------------------------------|
-|**Nome**    |Creazione pagina Web per webcam |
-|**Priorità**|1                     |
-|**Versione**|1.0                   |
-|**Note**    ||
-|**Sub-ID**    |Requisito |
-|**001**      |Si deve implementare una rappresentazione della webcam|
-|**002**      | Si deve organizzare e realizzare una interfaccia grafica    |
-  
-|ID  |REQ-004                                        |
-|----|------------------------------------------------|
-|**Nome**    |Creazione pagina Web per grafici |
-|**Priorità**|1                     |
-|**Versione**|1.0                   |
-|**Note**    ||
-|**Sub-ID**    |Requisito |
-|**001**      | Si deve implementare la lettura dal DB |
-|**002**      | Si devono creare 2 grafici: Numero di persone rilevate in ogni ora del giorno. Tempo medio di una persona di fronte all’obiettivo.|
-|**003**      | Si deve poter utilizzare un form di log in per il REQ-005           |
+|ID          |REQ-002                                         |
+|------------|------------------------------------------------|
+|**Nome**    |Filtri di ricerca                             |
+|**Priorità**|1                                               |
+|**Versione**|1.0                                             |
+|**Note**    |Filtro di ricerca da applicare alla pagina principale.|
+|**Sub-ID**  | Requisito                                      |
+|**001**     | Filtro per “con o senza periodo”.                  |
+|**002**     | Filtro per “numero di locali”.              |
+|**003**     | Filtro per “Prezzo”.              | 
 
-  
-|ID  |REQ-005                                        |
-|----|------------------------------------------------|
-|**Nome**    |Creazione pagina Web per gestione dell’admin |
-|**Priorità**|2                     |
-|**Versione**|1.0                   |
-|**Note**    ||
-|**Sub-ID**    |Miglioria |
-|**001**      |Si deve creare un pannello di gestione per le impostazioni della WebCam.|
-|**002**      | Si deve creare un pannello di gestione per le impostazioni di Tracking.    |
-  
 
-|ID  |REQ-006                                        |
-|----|------------------------------------------------|
-|**Nome**    |Creare una banca dati |
-|**Priorità**|1                     |
-|**Versione**|1.0                   |
-|**Note**    ||
-|**Sub-ID**    |Miglioria |
-|**001**      |Si deve creare un DB che ospiterà le persone tramite: 	Tempo di fronte all’obiettivo e ora del tracking.|
-   
-|ID  |REQ-007                                        |
-|----|------------------------------------------------|
-|**Nome**    |Ricerca di nuovi volti |
-|**Priorità**|1                     |
-|**Versione**|1.0                   |
-|**Note**    ||
-|**Sub-ID**    |Requisito |
-|**001**      | Si deve scegliere la libreria migliore per il tracking dei volti: openCV, tracking.js |
-|**002**      |Si deve implementare il codice JavaScript per l’individuazione dei dati tramite libreria.|
-|**003**      | La webcam deve eseguire la ricerca di nuovi volti ogni 15 secondi e se rileva dei volti nelle coordinate vicine a quelle vecchie, non ne terrà conto.|
-  
+|ID          |REQ-003                                         |
+|------------|------------------------------------------------|
+|**Nome**    |Pagina di login                              |
+|**Priorità**|1                                               |
+|**Versione**|1.0                                             |
+|**Note**    |Per utente già esistente.|
+|**Sub-ID**  | Requisito                                      |
+|**001**     | Accessibile dal menu a tendina della pagina principale “Accedi”.                  |
+|**002**     | Campo di username e password.              |
+|**003**     | Confermare l’accesso.              | 
+|**004**     | Riporta alla pagina principale con l’utente desiderato.  |
 
-|ID  |REQ-008                                        |
-|----|------------------------------------------------|
-|**Nome**    |Salvataggio delle persone sul DB |
-|**Priorità**|1                     |
-|**Versione**|1.0                   |
-|**Note**    ||
-|**Sub-ID**    |Miglioria |
-|**001**      |Si deve gestire il codice PHP del sito web per il corretto invio dei dati al DB.|
-  
 
-|ID  |REQ-009                                        |
-|----|------------------------------------------------|
-|**Nome**    |Utilizzo del prodotto su RaspBerry |
-|**Priorità**|1                     |
-|**Versione**|1.0                   |
-|**Note**    ||
-|**Sub-ID**    |Requisito |
-|**001**      | Si deve allestire un webserver Linux su RaspBerry|
-|**002**      |Si deve trasporre l’intero codice del progetto su RaspBerry|
-|**003**      | Si deve poter connettere 1 WebCam e 2 schermi contemporaneamente per input e output.|
+|ID          |REQ-004                                         |
+|------------|------------------------------------------------|
+|**Nome**    |Pagina di registrazione                              |
+|**Priorità**|1                                               |
+|**Versione**|1.0                                             |
+|**Note**    |Pagina per l’aggiunta di un nuovo appartamento.|
+|**Sub-ID**  | Requisito                                      |
+|**001**     | Accessibile dal menu a tendina della pagina principale “Registrati”. E dopo la creazione di un nuovo utente.|
+|**002**     | Inserimento di username, password, nome, cognome, indirizzo, tel privato, tel ufficio ed email come campi obbligatori.|
+|**003**     |Convalida dati.     | 
+|**004**     | Controllo l’utente non sia già esistente. |                
+|**005**     | Invio email con link di conferma.                   |
+|**006**     | Riporta alla pagina di Login, per re-inserire le credenziali.             |
+
+
+|ID          |REQ-005                                         |
+|------------|------------------------------------------------|
+|**Nome**    |Pagina creazione appartamento                               |
+|**Priorità**|1                                               |
+|**Versione**|1.0                                             |
+|**Note**    |Pagina per l’aggiunta di un nuovo appartamento.|
+|**Sub-ID**  | Requisito                                      |
+|**001**     | È prima necessario essere un utente proprietario.                  |
+|**002**     | Richiesta obbligatoria dei seguenti campi:
+ - Regione e Paese
+ - Una o più foto
+ - Pianta dell’appartamento.
+ - Numero di locali
+ - Posteggio (booleano + ev. quantità)
+ - Prezzo (alta e bassa stagione, settimanale, mensile, annuale)
+ - Spese
+ - Accessori (lista)
+ - Ammobiliato (booleano)
+ - Fumatori (booleano)
+ - Animali (booleano)
+ - Bambini (booleano)
+ - Ubicazione + carta
+ - Disponibilità
+ - Commenti|
+|**003**     |Aggiunta automatica del nome, cognome, tel privato e email del proprietario.          | 
+|**004**     | Salvataggio nel DB.  |
+
+
+|ID          |REQ-006                                         |
+|------------|------------------------------------------------|
+|**Nome**    |Visualizzazione singolo appartamento                               |
+|**Priorità**|1                                               |
+|**Versione**|1.0                                             |
+|**Note**    |Pagina che mostra le specifiche per ogni appartamento.|
+|**Sub-ID**  | Requisito                                      |
+|**001**     | Per utenti non registrati:
+ - Visione di tutti i campi definiti nel REQ-005 tranne i contatti del proprietario.|
+ 
+ 
+|ID          |REQ-007                                         |
+|------------|------------------------------------------------|
+|**Nome**    |Utente non registrato                               |
+|**Priorità**|1                                               |
+|**Versione**|1.0                                             |
+|**Note**    |Specifiche di un utente non registrato.|
+|**Sub-ID**  | Requisito                                      |
+|**001**     | Può navigare liberamente per il sito senza però avere possibilità di richiedere di diventare proprietario di un appartamento e di visualizzare i contatti di un altro proprietario.                  |
+
+
+|ID          |REQ-008                                         |
+|------------|------------------------------------------------|
+|**Nome**    |Utente registrato                           |
+|**Priorità**|1                                               |
+|**Versione**|1.0                                             |
+|**Note**    |Specifiche di un utente registrato.|
+|**Sub-ID**  | Requisito                                      |
+|**001**     | Può navigare liberamente per il sito ed utilizzare tutti i servizi. Può richiedere di diventare un proprietario contattando un gestore.|
+ 
+
+|ID          |REQ-009                                         |
+|------------|------------------------------------------------|
+|**Nome**    |Utente proprietario                               |
+|**Priorità**|1                                               |
+|**Versione**|1.0                                             |
+|**Note**    |Specifiche di un utente proprietario.|
+|**Sub-ID**  | Requisito                                      |
+|**001**     | Può navigare liberamente per il sito ed utilizzare tutti i servizi. Può aggiungere un appartamento.                 |
+
+
+|ID          |REQ-010                                         |
+|------------|------------------------------------------------|
+|**Nome**    |Utente gestore/amministratore                   |
+|**Priorità**|1                                               |
+|**Versione**|1.0                                             |
+|**Note**    |Specifiche di un utente registrato.|
+|**Sub-ID**  | Requisito                                      |
+|**001**     | Naviga liberamente nel sito ed è un utente proprietario.        |
+|**002**     | Gestisce gli utenti:
+ - Inserimento utenti
+ - Modifica utenti
+ - Cancellazioni utenti
+ - Visualizzazione utenti|
+ 
+ 
+|ID          |REQ-011                                         |
+|------------|------------------------------------------------|
+|**Nome**    |Creazione del DataBase                             |
+|**Priorità**|1                                               |
+|**Versione**|1.0                                             |
+|**Note**    |Database contenente la lista di appartamenti.|
+|**Sub-ID**  | Requisito                                      |
+|**001**     | Creazione di uno schema ER.          |
+|**002**     | Creazione di uno schema logico.    |
+|**003**     | Contiene gli utenti non registrati, utenti registrati, utenti proprietari e gestori.      | 
+|**004**     | Registra tutte le informazioni di ogni appartamento.  |
 
  
 
 
 ### Use case
 
-I casi d’uso rappresentano l’interazione tra i vari attori e le
-funzionalità del prodotto.
+Questo prodotto sarà un candidato degno di nota per la sostituzione di siti più conosciuti come tutti.ch ed affini.
 
 ### Pianificazione
 
@@ -190,15 +236,7 @@ Come prodotti fisici abbiamo usato i seguenti:
 
 | Proodotto | Caratteristiche |
 |    :--    |    --:    |
-|  Raspberry Pi3  |  so. raspbian 9.0  |
-|  tastiera K200  |  Logitech  |
-|  Mouse  |  Lenovo  |
-|  Monitor HDMI  |  Asus  |
-|  Televisore (da definire) |  XXXXXX  |
-|  Webcam (XXX) |  Logitech  |
-
-Mentre come prodotti virtuali abbiamo usato la libreria [tracking.js](https://trackingjs.com/).
-Il Raspberry é stato trasformato in un webserver, all`intreno abbiamo scaricato le seguenti versioni: 
+|  PC portatile  |  Windows 10  |
 
 | Pacchetto| Versione |
 |    :--    |    --:    |
@@ -209,36 +247,12 @@ Il Raspberry é stato trasformato in un webserver, all`intreno abbiamo scaricato
 
 ### Analisi dei costi
 
-#### Costo per persona:
-È stimato che un apprendista al nostro stesso livello guadagni circa 80 franchi all`ora.
-
-|Costo per ora:    |Ore        |Totale        |
-|------------------|-----------|--------------|
-|60                |48         |2880 fr.      |
-
-
-#### Costo totale (dipendenti):
-Essendo quattro persone a lavorare in questo progetto, i costi vanno moltiplicati.
-
-|Costo per ora   |Ore   |persone  |Totale     |
-|----------------|------|---------|-----------|
-|60              |48    |4        |11520 fr.  |
-
-
-#### Costo webcam:
-Dopo qualche ricerca abbiamo trovato la webcam adatta al nostro progetto e il presso é di:
-
-|Totale          |
-|----------------|
-|29 fr.          |
-
-
 #### Costo totale:
-Facendo una somma dei vari totali arriviamo al costo totale finale di questo progetto.
+Non necessitando di mezzi specifici, gli unici costi sono quelli dei dipendenti.
 
-|Totale          |
-|----------------|
-|11560 fr.       |
+|Costo per ora| Ore | Persone | Totale |
+|----------------|----------------|----------------|----------------|
+|60 fr.       |72|2|8640 fr.|
 
 
 ## Progettazione
