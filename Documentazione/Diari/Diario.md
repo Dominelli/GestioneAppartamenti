@@ -8,14 +8,14 @@ Alessandro
 
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
-|08:20 - 16:30 ||                 
+|08:20 - 16:30 |Ho lavorato sul gantt preventivo e lo ho terminato, dopodichè ho terminato il mockup della pagina di login.|                 
 
 
 Gabriele
 
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
-|08:20 - 16:30 | |
+|08:20 - 16:30 ||
 
 
 ##  Problemi riscontrati e soluzioni adottate
@@ -23,7 +23,7 @@ Gabriele
 2.
 3.
 ##  Punto della situazione rispetto alla pianificazione
-- 
+- Stiamo rispettando le durate indicate nel gantt.
 
 ## Programma di massima per la prossima giornata di lavoro
-- 
+- Completare tutti i mockup di tutte le pagine web richieste.
