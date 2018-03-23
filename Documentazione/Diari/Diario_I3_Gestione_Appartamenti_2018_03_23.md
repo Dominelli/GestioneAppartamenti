@@ -18,6 +18,8 @@ Gabriele
 |--------------|------------------------------|
 |08:20 - 09:00 |Creazione del Trello e messa a punto del file README.md|
 |09:00 - 09:30 |Colloquio per la risoluzione delle domande sul progetto.|
+|09:30 - 11:35 |Creazione del Mockup della pagina per l'aggiunta di un appartamento e per la gestione delle riservazioni.|
+
 
 
 ##  Problemi riscontrati e soluzioni adottate
