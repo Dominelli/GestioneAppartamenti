@@ -10,7 +10,9 @@ Alessandro
 |--------------|------------------------------|
 |08:20 - 09:00 |Realizzazione del Mockup della visualizzazione di un appartamento.|  
 |09:00 - 09:30 |Colloquio per la risoluzione delle domande sul progetto.|               
-|10:05 - 10.50 |Creazione del diagramma ER del database|
+|10:05 - 11:35 |Creazione del diagramma ER del database|
+|13:15 - 14:00 |Finalizzazione del diagramma ER del database|
+|14:00 - 16:30 |Realizzazione della pagina di Login|
 
 Gabriele
 
