@@ -19,9 +19,8 @@ Gabriele
 
 
 ##  Problemi riscontrati e soluzioni adottate
-1.
-2.
-3.
+
+
 ##  Punto della situazione rispetto alla pianificazione
 - Stiamo rispettando le durate indicate nel gantt.
 
