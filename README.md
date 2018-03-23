@@ -19,19 +19,8 @@ In questo progetto abbiamo come compito sviluppare 2 pagine web incaricate rispe
 ### Diari
 - [Diari](Documentazione/Diari/)
 
-- [Diario 10.11.2017](Documentazione/Diari/I3_DIARIO_PROG2_10.11.2017.md)
-- [Diario 17.11.2017](Documentazione/Diari/I3_DIARIO_PROG2_17.11.2017.md)
-- [Diario 24.11.2017](Documentazione/Diari/I3_DIARIO_PROG2_24.12.2017.md)
-- [Diario 01.12.2017](Documentazione/Diari/I3_DIARIO_PROG2_1.12.2017.md)
-- [Diario 15.12.2017](Documentazione/Diari/I3_DIARIO_PROG2_15.12.2017.md)
-- [Diario 22.12.2017](Documentazione/Diari/I3_DIARIO_PROG2_22.12.2017.md)
-- [Diario 12.01.2018](Documentazione/Diari/I3_DIARIO_PROG2_12.01.2018.md)
-- [Diario 19.01.2018](Documentazione/Diari/I3_DIARIO_PROG2_19.01.2018.md)
-- [Diario 26.01.2018](Documentazione/Diari/I3_DIARIO_PROG2_26.01.2018.md)
-- [Diario 02.02.2018](Documentazione/Diari/I3_DIARIO_PROG2_02.02.2018.md)
-- [Diario 09.02.2018](Documentazione/Diari/I3_DIARIO_PROG2_09.02.2018.md)
-- Vacanza 16.02.2018
-- [Diario 23.02.2018](Documentazione/Diari/I3_DIARIO_PROG2_23.02.2018.md)
+- [Diario 16.03.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_03_16.md)
+- [Diario 23.03.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_03_23.md)
 
 
 
@@ -39,6 +28,4 @@ In questo progetto abbiamo come compito sviluppare 2 pagine web incaricate rispe
 - [GitHub CheatSheet](Guide/github-cheatsheet.pdf)
 - [MarkDown CheatSheet](Guide/markdownCheatSheet.md)
 - [Impostare ambiente di lavoro](Guide/ImpostareAmbienteLavoro.md)
-- [Tracking.js](https://trackingjs.com/)
-- [Chart.js](http://www.chartjs.org/)
 
