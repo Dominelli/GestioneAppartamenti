@@ -41,7 +41,7 @@
 ### Abstract
 
 At the beginning  teachers in charge showed us the project, how it had to be done and what
-we would have to do to keep an appropriate organization. At the beginning we had some trouble. The main problem was figuring how all our requirements would be working toghether.
+we would have to do to keep an appropriate organization. At the beginning we had some trouble. The main problem was figuring out how all our requirements would be working toghether.
 Another problem was building an appropriate ER-schema, enough elaborated for our situation.
 Anyway, the final result would require some good team work. Both of us have to mix and learn several diffrent experiences. 
 
