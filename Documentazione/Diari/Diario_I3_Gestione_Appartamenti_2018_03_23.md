@@ -22,6 +22,7 @@ Gabriele
 |09:00 - 09:30 |Colloquio per la risoluzione delle domande sul progetto.|
 |09:30 - 11:35 |Creazione del Mockup della pagina per l'aggiunta di un appartamento e per la gestione delle riservazioni.|
 |13:15 - 13:53 |Correzione e semplificazione dello schema ER con Alessandro.|
+|13:53 - 16:30 |Realizzazione della pagina principale del sito|
 
 
 
