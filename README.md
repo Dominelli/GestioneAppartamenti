@@ -11,7 +11,8 @@ Data di consegna: 18.05.2018
 
 - [Trello Project Management](https://trello.com/b/sYnInYed/gestione-appartamenti)
 
-In questo progetto abbiamo come compito sviluppare 2 pagine web incaricate rispettivamente di eseguire un tracking dei volti dei partecipanti ad Espoprofessioni 2018 e l'altra sfrutterà le informazioni del primo (tramite Data Base) per sviluppare dei grafici informativi.
+Questo progetto consiste nell'implementazione di un'applicazione web che permetta di gestire l'affitto di appartamenti in Svizzera.
+Il progetto completo verrà presentato principalmente a un pubblico potenzialmente senza conoscenze informatiche. Le interfaccie e le funzionalità dovranno essere intuitive e seguiranno gli standard dei siti di fama più alta.
   
 ## Documentazione
 - [Documentazione Completa](Documentazione/Documentazione.md)
