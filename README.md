@@ -14,7 +14,7 @@ Data di consegna: 18.05.2018
 In questo progetto abbiamo come compito sviluppare 2 pagine web incaricate rispettivamente di eseguire un tracking dei volti dei partecipanti ad Espoprofessioni 2018 e l'altra sfrutterà le informazioni del primo (tramite Data Base) per sviluppare dei grafici informativi.
   
 ## Documentazione
-- [Documentazione Completa](Documentazione/FaceDetection.md)
+- [Documentazione Completa](Documentazione/Documentazione.md)
 
 ### Diari
 - [Diari](Documentazione/Diari/)
@@ -25,7 +25,5 @@ In questo progetto abbiamo come compito sviluppare 2 pagine web incaricate rispe
 
 
 ## Importante
-- [GitHub CheatSheet](Guide/github-cheatsheet.pdf)
 - [MarkDown CheatSheet](Guide/markdownCheatSheet.md)
-- [Impostare ambiente di lavoro](Guide/ImpostareAmbienteLavoro.md)
 
