@@ -15,7 +15,8 @@ Gabriele
 
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
-|08:20 - 16:30 ||
+|08:20 - 08:40 |Creazione del Trello e messa a punto del file README.md|
+|08:40 - 16:30 ||
 
 
 ##  Problemi riscontrati e soluzioni adottate
