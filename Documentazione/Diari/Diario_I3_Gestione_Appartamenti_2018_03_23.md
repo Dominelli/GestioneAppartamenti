@@ -8,15 +8,16 @@ Alessandro
 
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
-|08:20 - 16:30 ||                 
+|08:20 - 09:00 |Realizzazione del Mockup della visualizzazione di un appartamento.|  
+|09:00 - 09:30 |Colloquio per la risoluzione delle domande sul progetto.|               
 
 
 Gabriele
 
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
-|08:20 - 08:40 |Creazione del Trello e messa a punto del file README.md|
-|08:40 - 16:30 ||
+|08:20 - 09:00 |Creazione del Trello e messa a punto del file README.md|
+|09:00 - 09:30 |Colloquio per la risoluzione delle domande sul progetto.|
 
 
 ##  Problemi riscontrati e soluzioni adottate
