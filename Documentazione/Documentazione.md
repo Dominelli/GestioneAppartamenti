@@ -41,8 +41,9 @@
 ### Abstract
 
 At the beginning  teachers in charge showed us the project, how it had to be done and what
-we would have to do to keep an appropriate organization. At the beginning we had some trouble because we didn't know where to start. The main problem was connect the webcam page at the database. Another problem was lerning about the raspberry, how it work and how use it.
-The result was what I expected since the beginning, our approach worked very well except, as said before, we had to invest maybe too much time consulting with various guides.
+we would have to do to keep an appropriate organization. At the beginning we had some trouble. The main problem was figuring how all our requirements would be working toghether.
+Another problem was building an appropriate ER-schema, enough elaborated for our situation.
+Anyway, the final result would require some good team work. Both of us have to mix and learn several diffrent experiences. 
 
 
 ### Scopo
