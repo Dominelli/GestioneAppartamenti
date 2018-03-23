@@ -9,7 +9,7 @@ Data di consegna: 18.05.2018
 
 - [Quaderno dei compiti](Documentazione/qdc_p2_faceDetection.pdf)
 
-- [Trello Project Management](https://trello.com/b/PfylxN0O/facedetection)
+- [Trello Project Management](https://trello.com/b/sYnInYed/gestione-appartamenti)
 
 In questo progetto abbiamo come compito sviluppare 2 pagine web incaricate rispettivamente di eseguire un tracking dei volti dei partecipanti ad Espoprofessioni 2018 e l'altra sfrutterà le informazioni del primo (tramite Data Base) per sviluppare dei grafici informativi.
   
