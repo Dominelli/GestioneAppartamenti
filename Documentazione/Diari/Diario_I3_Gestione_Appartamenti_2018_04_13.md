@@ -9,7 +9,8 @@ Alessandro
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
 |08:20 - 13:30 |Ho sviluppato la pagina di registrazione in ugual modo al mockup e sto lavorando sulla parte di confermazione della registrazione dell'utente tramite email|
-|13:30 - 15:50 |Ci sono state date le credenziali per accedere al phpmyadmin e abbiamo lavorato sulla creazione del database con le varie tabelle che sono descritte nello schema e-r|
+|13:30 - 15:50 |Ci sono state date le credenziali per accedere al phpmyadmin e abbiamo lavorato sulla creazione del database con le varie tabelle|
+|15:50 - 16:30 |Ho corretto lo schema e-r in base alle modifiche che abbiamo dovuto fare nel corso della creazione del database|
 
 Gabriele
 
