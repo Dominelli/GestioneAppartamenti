@@ -19,6 +19,9 @@ Gabriele
 |08:20 - 13:30 |Ho concluso la struttura base dell'index del nostro sito. Sono presenti tutti gli elementi nel mockup. La pagina è già responsive.|
 |13:30 - 13:40 |Upload del codice su Github.|
 |13:40 - 15:00|Io ed Alessandro abbiamo lavorato alla realizzazione del DB secondo il nostro schema ER|
+|15:00 - 15:30|Riunione con Gionata Battaglioni, Lucas Previtali e Fabio Gola per la discussione sul progetto precedente (facedetection).|
+|15:30 - 15:50|Finita la creazione del database precedentemente iniziata.|
+|15:50 - 16:30|Upload dei progressi su GitHub e sullo spazio web di [gestione appartamenti](http://gestaff.samtinfo.ch)|
 
 
 
@@ -26,6 +29,8 @@ Gabriele
 
 
 ##  Punto della situazione rispetto alla pianificazione
+In orario rispetto al programma.
 
 
 ## Programma di massima per la prossima giornata di lavoro
+Continuazione dello sviluppo per le pagine web.
