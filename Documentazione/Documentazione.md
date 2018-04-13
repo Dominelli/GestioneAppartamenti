@@ -71,13 +71,8 @@ Anyway, the final result would require some good team work. Both of us have to m
 |**Note**    |Pagina di default della struttura del sito.|
 |**Sub-ID**  | Requisito                                      |
 |**001**     | Sarà presente una descrizione del sito.                  |
-|**002**     | Lista degli appartamenti, 10 per volta.              |
-|**003**     | Menu a tendina per login/istrizione.              | 
-|**004**     | Creazione pagina web per gestione dell’admin.  |                
-|**005**     | Creare una banca dati                          |
-|**006**     | Ricerca di nuovi volti                         |
-|**007**     | Salvataggio delle persone su DB                |
-|**008**     | Utilizzo del prodotto su RaspBerry             |
+|**002**     | Lista degli appartamenti, 6 per volta.              |
+|**003**     | Pulsanti per login/istrizione.              | 
 
 
 |ID          |REQ-002                                         |
@@ -99,7 +94,7 @@ Anyway, the final result would require some good team work. Both of us have to m
 |**Versione**|1.0                                             |
 |**Note**    |Per utente già esistente.|
 |**Sub-ID**  | Requisito                                      |
-|**001**     | Accessibile dal menu a tendina della pagina principale “Accedi”.                  |
+|**001**     | Accessibile dal pulsante della pagina principale “Accedi”.                  |
 |**002**     | Campo di username e password.              |
 |**003**     | Confermare l’accesso.              | 
 |**004**     | Riporta alla pagina principale con l’utente desiderato.  |
@@ -112,7 +107,7 @@ Anyway, the final result would require some good team work. Both of us have to m
 |**Versione**|1.0                                             |
 |**Note**    |Pagina per l’aggiunta di un nuovo appartamento.|
 |**Sub-ID**  | Requisito                                      |
-|**001**     | Accessibile dal menu a tendina della pagina principale “Registrati”. E dopo la creazione di un nuovo utente.|
+|**001**     | Accessibile dal pulsante della pagina principale “Registrati”. E dopo la creazione di un nuovo utente.|
 |**002**     | Inserimento di username, password, nome, cognome, indirizzo, tel privato, tel ufficio ed email come campi obbligatori.|
 |**003**     |Convalida dati.     | 
 |**004**     | Controllo l’utente non sia già esistente. |                
