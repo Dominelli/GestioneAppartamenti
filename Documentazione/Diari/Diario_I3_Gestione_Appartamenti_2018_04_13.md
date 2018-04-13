@@ -15,6 +15,7 @@ Gabriele
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
 |08:20 - 13:30 |Ho concluso la struttura base dell'index del nostro sito. Sono presenti tutti gli elementi nel mockup. La pagina è già responsive.|
+|13:30 - 13:40 |Upload del codice su Github.|
 
 
 
