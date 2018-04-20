@@ -4,65 +4,135 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Sign in</title>
 	<style>
-		table{
+		#tb{
+			margin: auto;
+			//position: relative;
+			//top: 50%;
+			//left: 50%;
+			//transform: translate(-50%, -50%);
 			border-radius: 4px;
 			background-color: #fff6c4;
-			margin: auto;
+			height: 100%;
 		}
-	  #tb {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+		
+		/* GENERALE */
+		body {
+			margin: 0px;
+		}
+		header a {
+			text-decoration: none;
+			color:white;
+		}
+
+		/* HEADER */
+		header h1, header img{
+			padding: 0px;
+			margin: 0px;
+		}
+		header {
+			border: solid 1px white;
+			margin: 0px;
+			padding: 0px 10px;
+			background-color: rgb(255,168,52);
+			color: white;
+		}
+		header ul {
+			list-style-type: none;
+			margin: 0px;
+			margin-top: 12px;
+			padding: 0px;
+			float: right;
+		}
+		header li {
+			display: inline;
+			background-color: rgb(255,255,255);
+			color: black;
+			padding: 5px;
+			border-radius: 4px;
+		}
+		header li:hover {
+			background-color: rgb(255,221,174);
+		}
+		header li:active {
+			background-color: rgb(255,221,174);
+		}
+		
+		/* FOOTER */
+		footer {
+			text-align: center;
+			border: solid 1px white;
+			padding: 10px 10px;
+			background-color: rgb(255,168,52);
+			color: white;
+			bottom: 0px;
+		}
 	</style>
 	</head>
-  <script>
-	/*function tb(){
-	  var h = window.innerHeight;
-	  var t = document.getElementById('tb');
-	  var tbh = t.style.height;
-	  console.log(tbh);
-	  t.style.marginTop = ((h-tbh)/2)+"px";
-	}
-	setInterval(tb, 500);*/
-  </script>
-  <body style="text-align:center;" onload="tb()">
-	<div id="tb">
-		<form name="Login" method="post" action="Login.php">
-		<table width="500px">
-		<tr>
-	 	<td colspan="2">
-	  
-	 	<div>Immetti i tuoi dati</div> 
-		 </td>
-
-		</tr>
-		<tr>
-		 <td valign="top">
-		  <label for="Username"><span>Username * </span></label>
-		 </td>
-		 <td valign="top">
-		  <input type="text" name="Username" id="Username" maxlength="80" style="width:230px">
-		 </td>
-		</tr>
-		<tr>
-		 <td valign="top">
-		  <label for="Password"><span>Password * </span></label>
-		 </td>
-		 <td valign="top">
-		  <input type="password" name="Password" id="Password" maxlength="80" style="width:230px">
-		 </td>
-		</tr>
-		<tr>
-		 <td colspan="2" style="text-align:center" >
-		 <br />
-		  <input type="submit" value=" Submit Form " id="submit" style="width:200px;height:40px">
-		 </td>
-		</tr>
-		</table>
-		</form>
-	</div>
-</body>
+	
+	<script>
+		function fixTable() {
+			var h = window.innerHeight;
+			var table = document.getElementById("tb");
+			var tableH = table.offsetHeight;
+			var headerH = document.getElementById("header").offsetHeight;
+			var footerH = document.getElementById("footer").offsetHeight;
+			
+			console.log(tableH);
+			table.style.marginTop = (((h-headerH-footerH)-tableH)/2) + "px";
+			table.style.marginBottom = (((h-headerH-footerH)-tableH)/2) + "px";
+		}
+		setInterval(fixTable, 100);
+	</script>
+	
+	<body style="text-align:center;" onload="fixTable()">
+		<header id="header">
+			<ul>
+				<a href="../registrazione/Registrazione.htm"><li>Registrati</li></a>
+				<a href="../index.php"><li>Home</li></a>
+			</ul>
+			<table>
+				<tr>
+					<td><a href="#"><img src="../index/img/home.png" width="25px" height="25px"></a></td>
+					<td><a href="#"><h1>Affittamenti.ch</h1></a></td>
+				</tr>
+			</table>
+		</header>
+		<div>
+			<form name="Login" method="post" action="Login.php">
+				<table width="500px" id="tb">
+					<tr>
+						<td colspan="2">
+					
+						<div>Immetti i tuoi dati</div> 
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+						<label for="Username"><span>Username * </span></label>
+						</td>
+						<td valign="top">
+						<input type="text" name="Username" id="Username" maxlength="80" style="width:230px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+						<label for="Password"><span>Password * </span></label>
+						</td>
+						<td valign="top">
+						<input type="password" name="Password" id="Password" maxlength="80" style="width:230px">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:center" >
+						<br />
+						<input type="submit" value=" Vai! " id="submit" style="width:200px;height:40px">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<footer id="footer">
+			&#169 2018 Gabriele Dominelli I3AA, Alessandro Spagnuolo I3BB
+		</footer>
+	</body>
 </html>
