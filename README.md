@@ -11,6 +11,8 @@ Data di consegna: 18.05.2018
 
 - [Trello Project Management](https://trello.com/b/sYnInYed/gestione-appartamenti)
 
+- [Sito Web Online](https://gestaff.samtinfo.ch/)
+
 Questo progetto consiste nell'implementazione di un'applicazione web che permetta di gestire l'affitto di appartamenti in Svizzera.
 Il progetto completo verrà presentato principalmente a un pubblico potenzialmente senza conoscenze informatiche. Le interfaccie e le funzionalità dovranno essere intuitive e seguiranno gli standard dei siti di fama più alta.
   
