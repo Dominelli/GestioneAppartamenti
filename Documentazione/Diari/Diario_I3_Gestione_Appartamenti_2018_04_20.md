@@ -1,7 +1,7 @@
-# PROGETTO | Diario di lavoro - 13.04.2018
+# PROGETTO | Diario di lavoro - 20.04.2018
 ##### Alessandro Spagnuolo
 ##### Gabriele Dominelli
-### Canobbio, [13.04.2018]
+### Canobbio, [20.04.2018]
 
 ## Lavori svolti
 Alessandro
@@ -18,7 +18,7 @@ Gabriele
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
 |08:20 - 09:20 |Abbiamo discusso con Mussi e Sartori a riguardo dello stato attuale del progetto e abbiamo chiarito ulteriori dettagli.|
-|09:20 - 14:45 |Ho rivisitato l'intera pagina dell'index. Invece di gestire il resposive tramite JavaScript, ho optato per l'utilizzo di css (in quanto causa meno problemi ed è più comodo per il futuro).|
+|09:20 - 14:45 |Ho rivisitato l'intera pagina dell'index. Invece di gestire il resposive tramite JavaScript, ho optato per l'utilizzo di css (in quanto causa meno problemi ed è più comodo per il futuro). Inoltre, adesso la pagina è ottimizzata anche per l'utilizzo da mobile, in quanto lo stile della pagina sotto una certa soglia si sviluppa in verticale.|
 
 
 
