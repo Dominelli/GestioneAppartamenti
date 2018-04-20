@@ -26,7 +26,7 @@ Gabriele
 
 
 ##  Problemi riscontrati e soluzioni adottate
-
+Il professore Muggiasca ci ha consigliato di limitare la chiave primaria del nostro schema-er nella tabella utente e verifica al campo "username".
 
 ##  Punto della situazione rispetto alla pianificazione
 In orario rispetto al programma.
