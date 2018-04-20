@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Sign up</title>
+	<style>
+		table{
+			border-radius: 4px;
+			background-color: #fff6c4;
+			margin: auto;
+		}
+	  #tb {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+	</style>
+	</head>
+  <body style="text-align:center;">
+	<div id="tb">
+	  <form name="Registrazione" method="post" action="Registrazione.php">
+	  <table width="500px">
+	  <tr>
+	   <td colspan="2">
+		
+	   <div><span>Tutti i campi </span> sono obbligatori.</div>
+	   <div>Spazi, caratteri speciali e numeri non sono ammessi nei campi nome e cognome</div> 
+	   </td>
+	  </tr>
+	  <tr>
+	   <td valign="top">
+		<label for="Username"><span>Username * </span></label>
+	   </td>
+	   <td valign="top">
+		<input type="text" name="Username" id="Username" maxlength="80" style="width:230px">
+	   </td>
+	  </tr>
+	  <tr>
+	  <tr>
+	   <td valign="top">
+		<label for="Password"><span>Password * </span></label>
+	   </td>
+	   <td valign="top">
+		<input type="password" name="Password" id="Password" maxlength="80" style="width:230px">
+	   </td>
+	  </tr>
+	  <tr>
+	   <td valign="top">
+		<label for="Name"><span>Nome * </span></label>
+	   </td>
+	   <td valign="top">
+		<input type="text" name="Name" id="Name" maxlength="80" style="width:230px" onkeyup="checkString('Name')">
+	   </td>
+	   </tr>
+	   <tr>
+	   <td valign="top">
+		<label for="Surname"><span>Cognome * </span></label>
+	   </td>
+	   <td valign="top">
+		<input type="text" name="Surname" id="Surname" maxlength="80" style="width:230px" onkeyup="checkString('Surname')">
+	   </td>
+	   </tr>
+	   <tr>
+	   <td valign="top">
+		<label for="Address"><span>Indirizzo * </span></label>
+	   </td>
+	   <td valign="top">
+		<input type="text" name="Address" id="Address" maxlength="80" style="width:230px">
+	   </td>
+	   </tr>
+	   <tr>
+	   <td valign="top">
+		<label for="Tel_Office"><span>N° telefono * </span></label>
+	   </td>
+	   <td valign="top">
+		<input type="number" name="Tel_Office" id="Tel_Office" maxlength="80" style="width:230px">
+	   </td>
+	   </tr>
+	   <tr>
+	   <td valign="top">
+		<label for="Tel_Phone"><span>N° cellulare * </span></label>
+	   </td>
+	   <td valign="top">
+		<input type="number" name="Tel_Phone" id="Tel_Phone" maxlength="80" style="width:230px">
+	   </td>
+	  </tr>
+	  <tr>
+	   <td valign="top">
+		<label for="Email_Address"><span>Indirizzo email * </span></label>
+	   </td>
+	   <td valign="top">
+		<input type="text" name="Email_Address" id="Email_Address" maxlength="100" style="width:230px" onchange="checkEmail()">
+	   </td>
+	  </tr>
+	  <tr>
+	   <td colspan="2" style="text-align:center" >
+	   <br />
+		<input type="submit" value=" Submit Form " id="submit" style="width:200px;height:40px">
+	   </td>
+	  </tr>
+	  </table>
+	  </form>
+	</div>
+	<script>
+	  //funzione che controlla il contenuto degli input di testo
+	  //toglie automaticamente gli spazi i numeri e i caratteri speciali
+		function checkString(a){
+			alph = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+			name = document.getElementById(a).value;
+			name = name.toLowerCase();
+			newname = "";
+			if(name != ""){
+				for(i = 0; i < name.length; i++){
+					for(j = 0; j < alph.length; j++){
+						if(name[i] == alph[j]){
+							newname += name[i];
+						}
+					}
+				}
+			}
+			document.getElementById(a).value = newname;
+		}
+	  //funzione che controlla il contenuto dell'email immessa dall'utente
+	  //tramite una regexp
+		function checkEmail(){
+		   email = document.getElementById('Email_Address').value;
+		   if(email == ""){
+				alert("The email isn't correct");
+				document.getElementById('Email_Address').value = "";
+				return false;
+		   }
+		   else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){  
+				return true;
+			} 
+			else{
+				alert("The email isn't correct");
+				document.getElementById('Email_Address').value = "";
+				return false;
+			} 
+		}
+	</script>
+</body>
+</html>
