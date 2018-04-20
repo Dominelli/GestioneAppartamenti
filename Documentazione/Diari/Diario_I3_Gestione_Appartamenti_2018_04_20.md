@@ -10,7 +10,7 @@ Alessandro
 |--------------|------------------------------|
 |08:20 - 09:20 |Abbiamo discusso con Mussi e Sartori a riguardo dello stato attuale del progetto e abbiamo chiarito ulteriori dettagli|
 |09:20 - 10:00 |Ho perfezionato la pagina di registrazione facendo in modo che la mail di conferma registra completamente l'utente desiderato.
-|10:00 - 11:35 |Ho implementato la pagina di login che controlla che l'utente abbia inserito dei valori validi di un utente esistente e lo reindirizza alla pagina principale passando l'utente in questione|
+|10:00 - 11:35 |Ho implementato la pagina di login che controlla che l'utente abbia inserito dei valori validi di un utente esistente e lo reindirizza alla pagina principale passando con il get nell'url l'utente in questione|
 
 
 Gabriele
