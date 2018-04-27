@@ -25,6 +25,7 @@ Il progetto completo verrà presentato principalmente a un pubblico potenzialmen
 - [Diario 16.03.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_03_16.md)
 - [Diario 23.03.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_03_23.md)
 - [Diario 13.04.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_04_13.md)
+- [Diario 20.04.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_04_20.md)
 
 
 
