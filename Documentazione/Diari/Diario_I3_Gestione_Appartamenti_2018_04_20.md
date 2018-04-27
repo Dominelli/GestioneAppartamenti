@@ -19,7 +19,7 @@ Gabriele
 |--------------|------------------------------|
 |08:20 - 09:20 |Abbiamo discusso con Mussi e Sartori a riguardo dello stato attuale del progetto e abbiamo chiarito ulteriori dettagli.|
 |09:20 - 14:45 |Ho rivisitato l'intera pagina dell'index. Invece di gestire il resposive tramite JavaScript, ho optato per l'utilizzo di css (in quanto causa meno problemi ed è più comodo per il futuro). Inoltre, adesso la pagina è ottimizzata anche per l'utilizzo da mobile, in quanto lo stile della pagina sotto una certa soglia si sviluppa in verticale.|
-|15:00 - 16:30|HHo perfezionato le pagine già esistenti modificandone lo stile.|
+|15:00 - 16:30|Ho perfezionato le pagine già esistenti modificandone lo stile.|
 
 
 ##  Problemi riscontrati e soluzioni adottate
