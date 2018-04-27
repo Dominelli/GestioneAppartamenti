@@ -13,7 +13,7 @@ create table if not EXISTS utente(
     primary key(username)
 );
 create table if not EXISTS appartamento(
-	id int auto_increment primary key,
+	id int primary key,
     bambini tinyint,
     fumatori tinyint,
     piantina blob,
@@ -26,9 +26,7 @@ create table if not EXISTS appartamento(
     ammobiliato tinyint,
     ubicazione varchar(50),
     commenti text,
-    email_prop varchar(50),
     username_prop varchar(50),
-    password_prop varchar(50),
     foreign key(username_prop) references utente(username) on delete cascade on update cascade
 );
 
@@ -39,8 +37,9 @@ create table if not EXISTS foto(
     foreign key(id_appartamento) REFERENCES appartamento(id) on delete cascade on update cascade
 );
 create table if not EXISTS accessori(
-	nome varchar(30) primary KEY,
+	nome varchar(30),
     id_appartamento int,
+	primary key(nome, id_appartamento),
     foreign key(id_appartamento) REFERENCES appartamento(id) on delete cascade on update cascade
 );
 create table if not EXISTS tipo(
