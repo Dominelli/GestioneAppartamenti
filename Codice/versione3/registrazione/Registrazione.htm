@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Sign up</title>
+		
+		<style>
+		#tb {
+			margin: auto;
+			border-radius: 4px;
+			background-color: #fff6c4;
+		}
+		
+		/* GENERALE */
+		body {
+			margin: 0px;
+		}
+		header a {
+			text-decoration: none;
+			color:white;
+		}
+
+		/* HEADER */
+		header h1, header img{
+			padding: 0px;
+			margin: 0px;
+		}
+		header {
+			border: solid 1px white;
+			margin: 0px;
+			padding: 0px 10px;
+			background-color: rgb(255,168,52);
+			color: white;
+		}
+		header ul {
+			list-style-type: none;
+			margin: 0px;
+			margin-top: 12px;
+			padding: 0px;
+			float: right;
+		}
+		header li {
+			display: inline;
+			background-color: rgb(255,255,255);
+			color: black;
+			padding: 5px;
+			border-radius: 4px;
+		}
+		header li:hover {
+			background-color: rgb(255,221,174);
+		}
+		header li:active {
+			background-color: rgb(255,221,174);
+		}
+		
+		/* FOOTER */
+		footer {
+			text-align: center;
+			border: solid 1px white;
+			padding: 10px 10px;
+			background-color: rgb(255,168,52);
+			color: white;
+		}
+		</style>
+	</head>
+	
+	<body style="text-align:center;" onload="fixTable()">
+		<header id="header">
+			<ul>
+				<a href="../login/Login.htm"><li>Accedi</li></a>
+				<a href="../index.php"><li>Home</li></a>
+			</ul>
+			<table>
+				<tr>
+				<td><a href="#"><img src="../index/img/home.png" width="25px" height="25px"></a></td>
+				<td><a href="#"><h1>Affittamenti.ch</h1></a></td>
+				</tr>
+			</table>
+		</header>
+		<div>
+			<form name="Registrazione" method="post" action="Registrazione.php">
+				<table width="500px" id="tb">
+					<tr>
+						<td colspan="2">
+							
+						<div><span>Tutti i campi </span> sono obbligatori.</div>
+						<div>Spazi, caratteri speciali e numeri non sono ammessi nei campi nome e cognome</div> 
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Username"><span>Username * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Username" id="Username" maxlength="80" style="width:230px">
+						</td>
+					</tr>
+					<tr>
+					<tr>
+						<td valign="top">
+							<label for="Password"><span>Password * </span></label>
+						</td>
+						<td valign="top">
+							<input type="password" name="Password" id="Password" maxlength="80" style="width:230px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Name"><span>Nome * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Name" id="Name" maxlength="80" style="width:230px" onkeyup="checkString('Name')">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Surname"><span>Cognome * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Surname" id="Surname" maxlength="80" style="width:230px" onkeyup="checkString('Surname')">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Address"><span>Indirizzo * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Address" id="Address" maxlength="80" style="width:230px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Tel_Office"><span>N° telefono * </span></label>
+						</td>
+						<td valign="top">
+							<input type="number" name="Tel_Office" id="Tel_Office" maxlength="80" style="width:230px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Tel_Phone"><span>N° cellulare * </span></label>
+						</td>
+						<td valign="top">
+							<input type="number" name="Tel_Phone" id="Tel_Phone" maxlength="80" style="width:230px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Email_Address"><span>Indirizzo email * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Email_Address" id="Email_Address" maxlength="100" style="width:230px" onchange="checkEmail()">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:center" >
+						<br />
+							<input type="submit" value=" Vai! " id="submit" style="width:200px;height:40px">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<script>
+			//funzione che controlla il contenuto degli input di testo
+			//toglie automaticamente gli spazi i numeri e i caratteri speciali
+			function checkString(a){
+				alph = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+				name = document.getElementById(a).value;
+				name = name.toLowerCase();
+				newname = "";
+				if(name != ""){
+					for(i = 0; i < name.length; i++){
+						for(j = 0; j < alph.length; j++){
+							if(name[i] == alph[j]){
+								newname += name[i];
+							}
+						}
+					}
+				}
+				document.getElementById(a).value = newname;
+			}
+			
+			//funzione che controlla il contenuto dell'email immessa dall'utente
+			//tramite una regexp
+			function checkEmail(){
+				email = document.getElementById('Email_Address').value;
+				if(email == ""){
+						alert("The email isn't correct");
+						document.getElementById('Email_Address').value = "";
+						return false;
+				}
+				else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){  
+					return true;
+				} 
+				else{
+					alert("The email isn't correct");
+					document.getElementById('Email_Address').value = "";
+					return false;
+				} 
+			}
+			
+			//funzione che centra il form di inserimento sia verticalmente che orizzontalmente
+			function fixTable() {
+				var h = window.innerHeight;
+				var table = document.getElementById("tb");
+				var tableH = table.offsetHeight;
+				var headerH = document.getElementById("header").offsetHeight;
+				var footerH = document.getElementById("footer").offsetHeight;
+				
+				console.log(tableH);
+				table.style.marginTop = (((h-headerH-footerH)-tableH)/2) + "px";
+				table.style.marginBottom = (((h-headerH-footerH)-tableH)/2) + "px";
+			}
+			setInterval(fixTable, 100);
+		</script>
+		
+		<footer id="footer">
+		&#169 2018 Gabriele Dominelli I3AA, Alessandro Spagnuolo I3BB
+		</footer>
+	</body>
+</html>
