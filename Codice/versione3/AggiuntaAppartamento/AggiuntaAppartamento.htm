@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Aggiunta Appartamento</title>
+		
+		<style>
+		#tb {
+			margin: auto;
+			border-radius: 4px;
+			background-color: #fff6c4;
+		}
+		
+		/* GENERALE */
+		body {
+			margin: 0px;
+		}
+		header a {
+			text-decoration: none;
+			color:white;
+		}
+
+		/* HEADER */
+		header h1, header img{
+			padding: 0px;
+			margin: 0px;
+		}
+		header {
+			border: solid 1px white;
+			margin: 0px;
+			padding: 0px 10px;
+			background-color: rgb(255,168,52);
+			color: white;
+		}
+		header ul {
+			list-style-type: none;
+			margin: 0px;
+			margin-top: 12px;
+			padding: 0px;
+			float: right;
+		}
+		header li {
+			display: inline;
+			background-color: rgb(255,255,255);
+			color: black;
+			padding: 5px;
+			border-radius: 4px;
+		}
+		header li:hover {
+			background-color: rgb(255,221,174);
+		}
+		header li:active {
+			background-color: rgb(255,221,174);
+		}
+		
+		/* FOOTER */
+		footer {
+			text-align: center;
+			border: solid 1px white;
+			padding: 10px 10px;
+			background-color: rgb(255,168,52);
+			color: white;
+		}
+		</style>
+	</head>
+	
+	<body style="text-align:center;" onload="fixTable()">
+		<header id="header">
+			<ul>
+				
+			</ul>
+			<table>
+				<tr>
+				<td><a href="#"><img src="../index/img/home.png" width="25px" height="25px"></a></td>
+				<td><a href="#"><h1>Affittamenti.ch</h1></a></td>
+				</tr>
+			</table>
+		</header>
+		<div>
+			<form enctype="multipart/form-data" name="AggiuntaAppartamento" method="post" action="AggiuntaAppartamento.php?username=gab.dom">
+				<table width="500px" id="tb">
+					<tr>
+						<td colspan="2">
+							
+						<label><span>Tutti i campi </span> sono obbligatori.</label>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Titolo"><span>Titolo * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Titolo" id="Titolo" maxlength="80" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Paese"><span>Paese * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Paese" id="Paese" maxlength="80" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Regione"><span>Regione * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Regione" id="Regione" maxlength="80" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+					<tr>
+						<td valign="top">
+							<label for="Foto"><span>Foto * </span></label>
+						</td>
+						<td valign="top">
+							<input type="file" name="Foto" id="Foto" maxlength="80" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Pianta"><span>Pianta * </span></label>
+						</td>
+						<td valign="top">
+							<input type="file" name="Pianta" id="Pianta" maxlength="80" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="NumeroLocali"><span>N° Locali * </span></label>
+						</td>
+						<td valign="top">
+							<input type="number" name="NumeroLocali" id="NumeroLocali" maxlength="80" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Posteggio"><span>Posteggio * </span></label>
+						</td>
+						<td valign="top">
+							<select id="Posteggio" name="Posteggio">
+								<option id="Si" value="Si">Si</option>
+								<option id="No" value="No" selected="selected">No</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Prezzo"><span>Prezzo * </span></label>
+						</td>
+						<td valign="top">
+							<input type="number" name="Prezzo" id="Prezzo" maxlength="80" style="width:200px">
+						</td>
+						<td>
+							<select id="SceltaPrezzo" name="SceltaPrezzo">
+								<option id="AltaStagione" value="AltaStagione">Alta stagione</option>
+								<option id="BassaStagione" value="BassaStagione">Bassa stagione</option>
+								<option id="Settimanale" value="Settimanale">Settimanale</option>
+								<option id="Mensile" value="Mensile" selected="selected">Mensile</option>
+								<option id="Annuale" value="Annuale">Annuale</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Spese"><span>Spesa * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Spesa" id="Spesa" maxlength="100" style="width:200px">
+						</td>
+						<td>
+							<input type="number" name="CostoSpesa" id="CostoSpesa" maxlength="100" style="width:30px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Accessorio"><span>Accessorio * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Accessorio" id="Accessorio" maxlength="100" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Ammobiliato"><span>Ammobiliato * </span></label>
+						</td>
+						<td valign="top">
+							<select id="Ammobiliato" name="Ammobiliato">
+								<option id="Si" value="Si">Si</option>
+								<option id="No" value="No" selected="selected">No</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Fumatori"><span>Fumatori * </span></label>
+						</td>
+						<td valign="top">
+							<select id="Fumatori" name="Fumatori">
+								<option id="Si" value="Si">Si</option>
+								<option id="No" value="No" selected="selected">No</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Animali"><span>Animali * </span></label>
+						</td>
+						<td valign="top">
+							<select id="Animali" name="Animali">
+								<option id="Si" value="Si">Si</option>
+								<option id="No" value="No" selected="selected">No</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Bambini"><span>Bambini * </span></label>
+						</td>
+						<td valign="top">
+							<select id="Bambini" name="Bambini">
+								<option id="Si" value="Si">Si</option>
+								<option id="No" value="No" selected="selected">No</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Ubicazione"><span>Indirizzo * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Indirizzo" id="Indirizzo" maxlength="100" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Commenti"><span>Commenti * </span></label>
+						</td>
+						<td valign="top">
+							<input type="textarea" name="Commenti" id="Commenti" maxlength="100" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:center" >
+						<br />
+							<input type="submit" value=" Aggiungi! " id="submit" style="width:200px;height:40px">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<script>	
+			//funzione che centra il form di inserimento sia verticalmente che orizzontalmente
+			function fixTable() {
+				var h = window.innerHeight;
+				var table = document.getElementById("tb");
+				var tableH = table.offsetHeight;
+				var headerH = document.getElementById("header").offsetHeight;
+				var footerH = document.getElementById("footer").offsetHeight;
+				
+				console.log(tableH);
+				table.style.marginTop = (((h-headerH-footerH)-tableH)/2) + "px";
+				table.style.marginBottom = (((h-headerH-footerH)-tableH)/2) + "px";
+			}
+			setInterval(fixTable, 100);
+		</script>
+		
+		<footer id="footer">
+		&#169 2018 Gabriele Dominelli I3AA, Alessandro Spagnuolo I3BB
+		</footer>
+	</body>
+</html>
