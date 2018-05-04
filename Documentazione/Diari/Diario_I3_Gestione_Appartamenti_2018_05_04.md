@@ -17,7 +17,8 @@ Gabriele
 |--------------|------------------------------|
 |08:20 - 09:30 |Aggiustamento finale di stile della pagina principale. Adesso è effettivamente responsive anche sui dispositivi mobile.|
 |09:30 - 09:45 |Abbiamo risolto il problema di log in. Utilizzando la variabile globale SESSION di PHP, adesso possimo gestire ogni utente singolarmente.|
-|09:45 - 14:06 |Adesso la pagina principale legge correttamente il prezzo e le immagini relative ad ogni singolo appartamento a schermo.|
+|09:45 - 14:45 |Adesso la pagina principale legge correttamente il prezzo e le immagini relative ad ogni singolo appartamento a schermo.|
+|14:45 - 15:30 |Nel caso un appartamento non abbia una sua immagine verrà adesso assegnata quella di default.|
 
 
 ##  Problemi riscontrati e soluzioni adottate
