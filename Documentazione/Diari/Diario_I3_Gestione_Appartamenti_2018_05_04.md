@@ -14,8 +14,9 @@ Gabriele
 
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
-|08:20 - 09:30 |Aggiustamento finale della pagina principale. Adesso è effettivamente responsive anche sui dispositivi mobile.|
+|08:20 - 09:30 |Aggiustamento finale di stile della pagina principale. Adesso è effettivamente responsive anche sui dispositivi mobile.|
 |09:30 - 09:45 |Abbiamo risolto il problema di log in. Utilizzando la variabile globale SESSION di PHP, adesso possimo gestire ogni utente singolarmente.|
+|09:45 - 14:06 |Adesso la pagina principale legge correttamente il prezzo e le immagini relative ad ogni singolo appartamento a schermo.|
 
 
 ##  Problemi riscontrati e soluzioni adottate
