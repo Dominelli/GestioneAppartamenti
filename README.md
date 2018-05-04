@@ -1,6 +1,8 @@
 # Progetto: Gestione Appartamenti - SAMTrevano
 
 - Massimo Sartori (docente responsabile)
+- Gabriele Dominelli (I3AA)
+- Alessandro Spagnuolo (I3BB)
 
 ## Informazioni
 Iniziato il: 16.03.2018
