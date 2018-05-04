@@ -8,7 +8,7 @@ Alessandro
 
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
-|08:20 - 16:30 ||
+|08:20 - 10:25 |Ho lavorato sulla pagina di inserimento di un nuovo appartamento, ho risolto il problema dell'inserimento dell'appartamento mettendo a posto la query che prende il massimo degli id degli appartamenti. Una volta sistemato questo la pagina aggiugne correttamente il nuovo appartamento.|
 
 Gabriele
 
