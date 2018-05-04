@@ -8,7 +8,8 @@ Alessandro
 
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
-|08:20 - 10:25 |Ho lavorato sulla pagina di inserimento di un nuovo appartamento, ho risolto il problema dell'inserimento dell'appartamento mettendo a posto la query che prende il massimo degli id degli appartamenti. Una volta sistemato questo la pagina aggiugne correttamente il nuovo appartamento.|
+|08:20 - 10:25 |Ho lavorato sulla pagina di inserimento di un nuovo appartamento, ho risolto il problema dell'inserimento dell'appartamento mettendo a posto la query che prende il massimo degli id degli appartamenti. Una volta sistemato questo la pagina aggiugne correttamente il nuovo appartamento.|Ho lavorato su|
+|10:25 - 16:30 |Ho perfezionato la pagina di inserimento di un nuovo appartamento dato che parlando con il professor Sartori siamo giunti a delle conclusioni su come fare per aggiungere le immagini e alla fine abbiamo deciso di mettere un tag input file multiple in modo da poter mettere più foto allo stesso tempo. Ho anche messo la possibilità di aggiungere più spese e più accessori.|
 
 Gabriele
 
