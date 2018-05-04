@@ -19,10 +19,12 @@ Gabriele
 |09:30 - 09:45 |Abbiamo risolto il problema di log in. Utilizzando la variabile globale SESSION di PHP, adesso possimo gestire ogni utente singolarmente.|
 |09:45 - 14:45 |Adesso la pagina principale legge correttamente il prezzo e le immagini relative ad ogni singolo appartamento a schermo.|
 |14:45 - 15:30 |Nel caso un appartamento non abbia una sua immagine verrà adesso assegnata quella di default.|
+|15:30 - 16:30 |Ho cominciato ad implementare il codice per i filtri di ricerca della pagina principale.|
 
 
 ##  Problemi riscontrati e soluzioni adottate
  - Secondo il consiglio del professore Mussi, abbiamo spostato e diviso il css della pagina principale in file separati.
+ - Gabriele: Ho avuto delle difficoltà nella lettura delle immagini dal database ed il loro stile a schermo.
 
 ##  Punto della situazione rispetto alla pianificazione
 In orario rispetto al programma.
