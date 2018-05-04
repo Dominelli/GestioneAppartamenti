@@ -7,7 +7,7 @@ Iniziato il: 16.03.2018
 
 Data di consegna: 18.05.2018
 
-- [Quaderno dei compiti](Documentazione/qdc_p2_faceDetection.pdf)
+- [Quaderno dei compiti](Documentazione/qdc_gestioneAppartamenti.pdf)
 
 - [Trello Project Management](https://trello.com/b/sYnInYed/gestione-appartamenti)
 
