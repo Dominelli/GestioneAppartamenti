@@ -1,7 +1,7 @@
 # PROGETTO | Diario di lavoro - 04.05.2018
 ##### Alessandro Spagnuolo
 ##### Gabriele Dominelli
-### Canobbio, [05.04.2018]
+### Canobbio, [04.05.2018]
 
 ## Lavori svolti
 Alessandro
