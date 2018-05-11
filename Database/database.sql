@@ -32,7 +32,7 @@ create table if not EXISTS appartamento(
 
 create table if not EXISTS foto(
     id int AUTO_INCREMENT PRIMARY KEY,
-	foto blob,
+	foto mediumblob,
     id_appartamento int,
     foreign key(id_appartamento) REFERENCES appartamento(id) on delete cascade on update cascade
 );
