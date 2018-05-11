@@ -26,10 +26,13 @@ Il progetto completo verrà presentato principalmente a un pubblico potenzialmen
 
 - [Diario 16.03.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_03_16.md)
 - [Diario 23.03.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_03_23.md)
+- Vacanza 30.03.2018
+- Vacanza 06.04.2018
 - [Diario 13.04.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_04_13.md)
 - [Diario 20.04.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_04_20.md)
 - [Diario 27.04.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_04_27.md)
 - [Diario 04.05.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_05_04.md)
+- [Diario 11.05.2018](Documentazione/Diari/Diario_I3_Gestione_Appartamenti_2018_05_11.md)
 
 
 
