@@ -16,7 +16,7 @@ Gabriele
 |Orario        |Lavoro svolto                 |
 |--------------|------------------------------|
 |08:20 - 14:10 |Creazione della pagina php che permette di filtrare le ricerche. Questa pagina è in grado di selezionare gli appartamenti corretti tramite i campi di input presenti su index.php. Il file si appoggia alla variabile globale SESSION per poi passare le informazioni ad index.php. Ancora però non sono stati presi in considerazione i campi data del periodo, in quanto non ancora presenti sul DB.|
-|14:10 - 16:30 ||
+|14:10 - 16:30 |Ho cominciato a creare la pagina di aggiunta delle riservazioni degli appartamenti.|
 
 
 ##  Problemi riscontrati e soluzioni adottate
@@ -28,4 +28,4 @@ Oggi avremmo dovuto finire la pagina che permette la visualizzazione del singolo
 
 
 ## Programma di massima per la prossima giornata di lavoro
-Continuazione dello sviluppo per le pagine web.
+Continuazione dello sviluppo per le pagine web e consegna di progetto.
