@@ -1,0 +1,34 @@
+/* AGGIUSTAMENTO RESPONSIVE VERTICALE */
+@media only screen and (max-width: 785px) {
+	main {
+		margin: 0px;
+	}
+	#description {
+		display: none;
+	}
+	#navMenu {
+		width: 100%;
+		margin: 0px;
+	}
+	.sidebar table {
+		margin:auto;
+	}
+	.sidebar input {
+		width: auto;
+	}
+	.sidebar tr{
+		display: inline-table;
+		padding: 10px;
+	}
+	.sidebar td {
+		padding: 0px;
+		width: 100%;
+	}
+	#center td {
+		display: block;
+		padding: 0px;
+	}
+	#center {
+		margin: 10px;
+	}
+}
