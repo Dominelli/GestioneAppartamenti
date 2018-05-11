@@ -6,10 +6,6 @@
 	<style>
 		#tb{
 			margin: auto;
-			//position: relative;
-			//top: 50%;
-			//left: 50%;
-			//transform: translate(-50%, -50%);
 			border-radius: 4px;
 			background-color: #fff6c4;
 			height: 100%;
@@ -64,7 +60,6 @@
 			padding: 10px 10px;
 			background-color: rgb(255,168,52);
 			color: white;
-			bottom: 0px;
 		}
 	</style>
 	</head>
@@ -77,7 +72,6 @@
 			var headerH = document.getElementById("header").offsetHeight;
 			var footerH = document.getElementById("footer").offsetHeight;
 			
-			console.log(tableH);
 			table.style.marginTop = (((h-headerH-footerH)-tableH)/2) + "px";
 			table.style.marginBottom = (((h-headerH-footerH)-tableH)/2) + "px";
 		}

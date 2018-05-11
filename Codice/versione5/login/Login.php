@@ -1,4 +1,5 @@
 <?php
+	session_start();
   //controllo che l'utente abbia inserito correttamente i campi di login
 	if(isset($_POST['Username']) && $_POST['Username'] != "" && isset($_POST['Password']) && $_POST['Password'] != ""){
 	  //prendo i valori dell'utente
@@ -27,7 +28,7 @@
 	  	$valore = array();
 	  	array_push($user, $username);
 	  //preparo la query che verifica che l'utente inserito sia esistente
-	  	$sql = "select username from utente where username = '".$username."' and password = '".$password."'";
+	  	$sql = "select username from utente where username = '".$username."' and password = '".$password."' and stato = 1";
 		if($conn->query($sql) == FALSE) {
 		  	echo "<p>C'è stato un errore con il tuo login</p><p>Per favore torna indietro e riprova</p>";
 		}
@@ -39,9 +40,10 @@
 		  		array_push($valore, $row["username"]);
 			}
 	  	}
-	  	if($valore == $user){
+	  	if($valore[0] == $user[0]){
 		  //reindirizzo l'utente alla pagina principale con il suo login
-		  	header("Location: ../index.php?username=".$username);
+		  	$_SESSION['user'] = $user[0];
+		  	header("Location: ../index.php");
 		}
 		else{
 		  echo "<p>C'è stato un errore con il tuo login</p><p>Per favore torna indietro e riprova</p>";

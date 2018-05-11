@@ -65,58 +65,77 @@
 			}
 			
 			//Leggo gli ultimi 6 appartamenti
-			global $appartamenti;
-			$appartamenti = array();
-			//preparo la query che verifica che l'utente inserito sia esistente
-			$sql = "SELECT id,titolo,n_locali,commenti from appartamento order by id desc limit 6";
-			if($conn->query($sql) == FALSE) {
-				echo "<p>C'è stato un errore con la lettura degli appartamenti</p><p>Per favore torna indietro e riprova</p>";
-			}
-			$result = $conn->query($sql);
-			
-			
-			if ($result->num_rows > 0) {
-				while($row = $result->fetch_assoc()) {
-					array_push($appartamenti, $row);
-				}
-			
-				//Leggo il prezzo degli appartamenti
-				global $prezzi;
-				$prezzi = array();
-				for($i = 0; $i < count($appartamenti); $i++) {
-					
-					$id_appartamento = $appartamenti[$i]["id"];
-					$sql = "select prezzo,tipo from prezzo where id_appartamento = ".$id_appartamento;
+			if(isset($_SESSION["appartamenti"]) && isset($_SESSION["prezzi"]) && isset($_SESSION["immagini"])) {
+				$appartamenti = $_SESSION["appartamenti"];
+				$prezzi = $_SESSION["prezzi"];
+				$immagini = $_SESSION["immagini"];
 				
-					if($conn->query($sql) == FALSE) {
-						echo "<p style='color: red;'>C'è stato un errore con la lettura dei prezzi</p>";
+				/*echo "<pre>";
+				print_r($_SESSION);
+				echo "<hr>";
+				print_r($appartamenti);
+				print_r($prezzi);
+				print_r($immagini);
+				echo "</pre>";*/
+				
+				$_SESSION["appartamenti"] = null;
+				$_SESSION["prezzi"] = null;
+				$_SESSION["immagini"] = null;
+				
+			}
+			else {
+				global $appartamenti;
+				$appartamenti = array();
+				//preparo la query che verifica che l'utente inserito sia esistente
+				$sql = "SELECT id,titolo,n_locali,commenti from appartamento order by id desc limit 6";
+				if($conn->query($sql) == FALSE) {
+					echo "<p>C'è stato un errore con la lettura degli appartamenti</p><p>Per favore torna indietro e riprova</p>";
+				}
+				$result = $conn->query($sql);
+				
+				
+				if ($result->num_rows > 0) {
+					while($row = $result->fetch_assoc()) {
+						array_push($appartamenti, $row);
 					}
-					$result = $conn->query($sql);
-					if ($result->num_rows > 0) {
-						while($row = $result->fetch_assoc()) {
-							array_push($prezzi, $row);
+				
+					//Leggo il prezzo degli appartamenti
+					global $prezzi;
+					$prezzi = array();
+					for($i = 0; $i < count($appartamenti); $i++) {
+						
+						$id_appartamento = $appartamenti[$i]["id"];
+						$sql = "select prezzo,tipo from prezzo where id_appartamento = ".$id_appartamento;
+					
+						if($conn->query($sql) == FALSE) {
+							echo "<p style='color: red;'>C'è stato un errore con la lettura dei prezzi</p>";
+						}
+						$result = $conn->query($sql);
+						if ($result->num_rows > 0) {
+							while($row = $result->fetch_assoc()) {
+								array_push($prezzi, $row);
+							}
 						}
 					}
-				}
-				
-				//Leggo le immagini degli appartamenti
-				global $immagini;
-				$immagini = array();
-				for($i = 0; $i < count($appartamenti); $i++) {
 					
-					$id_appartamento = $appartamenti[$i]["id"];
-					$sql = "select foto from foto where id_appartamento = '".$id_appartamento."' order by id_appartamento asc limit 1";
-				
-					if($conn->query($sql) == FALSE) {
-						echo "<p style='color: red;'>C'è stato un errore con la lettura delle foto</p>";
+					//Leggo le immagini degli appartamenti
+					global $immagini;
+					$immagini = array();
+					for($i = 0; $i < count($appartamenti); $i++) {
+						
+						$id_appartamento = $appartamenti[$i]["id"];
+						$sql = "select foto from foto where id_appartamento = '".$id_appartamento."' order by id_appartamento asc limit 1";
+					
+						if($conn->query($sql) == FALSE) {
+							echo "<p style='color: red;'>C'è stato un errore con la lettura delle foto</p>";
+						}
+						$sth = $conn->query($sql);
+						$result = mysqli_fetch_array($sth);
+						
+						array_push($immagini, array($id_appartamento, base64_encode($result[0])));
 					}
-					$sth = $conn->query($sql);
-					$result = mysqli_fetch_array($sth);
-					
-					array_push($immagini, array($id_appartamento, base64_encode($result[0])));
 				}
 			}
-			
 		?>
 		
 		<script>
@@ -127,8 +146,8 @@
 				}
 				else {
 					var output = "<ul>";
-					if(<?php echo $isProprietario;?> == 1) output += "<a href='aggiuntaAppartamento/AggiuntaAppartamento.htm'><li>Aggiungi appartamento</li></a>";				
 					output += "Benvenuto <?php echo $username;?> ";
+					if(<?php echo $isProprietario;?> == 1) output += "<a href='aggiuntaAppartamento/AggiuntaAppartamento.htm'><li>Aggiungi appartamento</li></a>";
 					output += "<a href='index/script/logout.php'><li>Log Out</li></a>";
 					output += "</ul>";
 					
