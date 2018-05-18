@@ -1,0 +1,164 @@
+/* GENERALE */
+body {
+	margin: 0px;
+	color: black;
+}
+
+/* HEADER */
+header a {
+	text-decoration: none;
+	color: black;
+}
+header h1, header img{
+	padding: 0px;
+	margin: 0px;
+	color: white;
+}
+header {
+	border: solid 1px white;
+	margin: 0px;
+	padding: 0px 10px;
+	background-color: rgb(255,168,52);
+	display: sticky;
+}
+header ul {
+	list-style-type: none;
+	margin: 0px;
+	margin-top: 10px;
+	padding: 0px;
+	float: right;
+	color: white;
+}
+header li {
+	display: inline;
+	background-color: rgb(255,255,255);
+	color: black;
+	padding: 5px;
+	margin-right: 5px;
+	border-radius: 4px;
+}
+header li:hover {
+	background-color: rgb(255,221,174);
+}
+header li:active {
+	background-color: rgb(255,221,174);
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+	color: black;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 10px;
+	min-width: 155px;
+    //z-index: 1;
+	margin-left: -5px;
+	margin-top: 5px;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown .dropdown-content a:hover{
+	color: orange;
+}
+
+/* LEFT SIDEBAR */
+#navMenu {
+	margin: 10px;
+	width: 20vw;
+}
+#navMenu h3 {
+	margin-top: 0px;
+}
+.sidebar {
+	background-color: rgba(230,230,230,0.5);
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 4px;
+}
+.sidebar td {
+	vertical-align: middle;
+}
+.sidebar img {
+	padding-right: 5px;
+}
+.navInput {
+	width: 10vw;
+}
+#periodDates input:disabled {
+	background: #dddddd;
+	color: #dddddd;
+}
+#periodDates input:enabled {
+	background: white;
+}
+
+/* CORPO CENTRALE */
+main {
+	margin-right: 10px;
+	width: 100%;
+}
+main a {
+	text-decoration: none;
+	color: black;
+}
+.room {
+	border-radius: 7px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	background-color: rgba(230,230,230,0.3);
+}
+.room table{
+	margin: auto;
+	width: 100%;
+	table-layout: fixed;
+}
+.room tr{
+	text-align: center;
+}
+.room td {
+	width: auto;
+	vertical-align: middle;
+}
+.room img {
+	vertical-align: middle;
+	padding: 0px;
+	margin: 0px;
+	max-width:230px;
+	max-height:95px;
+	width: auto;
+	height: 100%;
+}
+.room:hover {
+	background-color: rgba(255,199,123,0.3);
+}
+#lastRoom {
+	background-color: rgba(255,168,52,0.3);
+}
+#lastRoom:hover {
+	background-color: rgba(255,199,123,0.3);
+}
+#center {
+	margin: 10px;
+}
+
+/* CORPO CENTRALE + LEFT SIDEBAR */
+#center td {
+	vertical-align: top;
+	padding: 0px;
+}
+
+/* FOOTER */
+footer {
+	text-align: center;
+	border: solid 1px white;
+	padding: 10px 10px;
+	background-color: rgb(255,168,52);
+	color: white;
+}

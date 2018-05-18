@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Aggiunta Appartamento</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="keywords" content="Gestione, Affitti, Svizzera, Progetto, CPT, SAMT, I3BB">
+		<meta name="description" content="Progetto di gestione affitti. 16.03.2018 - 18.05.2018">
+		<meta name="author" content="Alessandro Spagnuoolo">
+		<meta charset="UTF-8">
+		<!--[if lt IE 9]><script src="http://html5shiv.googlevode.com/svn/trunk/html5-js"></script><![endif]-->
+		<style>
+		#tb {
+			margin: auto;
+			margin-bottom: 40px;
+			margin-top: 40px;
+			border-radius: 4px;
+			background-color: #fff6c4;
+		}
+		
+		/* GENERALE */
+		body {
+			margin: 0px;
+		}
+		header a {
+			text-decoration: none;
+			color:white;
+		}
+
+		/* HEADER */
+		header h1, header img{
+			padding: 0px;
+			margin: 0px;
+		}
+		header {
+			border: solid 1px white;
+			margin: 0px;
+			padding: 0px 10px;
+			background-color: rgb(255,168,52);
+			color: white;
+		}
+		header ul {
+			list-style-type: none;
+			margin: 0px;
+			margin-top: 12px;
+			padding: 0px;
+			float: right;
+		}
+		header li {
+			display: inline;
+			background-color: rgb(255,255,255);
+			color: black;
+			padding: 5px;
+			border-radius: 4px;
+		}
+		header li:hover {
+			background-color: rgb(255,221,174);
+		}
+		header li:active {
+			background-color: rgb(255,221,174);
+		}
+		
+		/* FOOTER */
+		footer {
+			text-align: center;
+			border: solid 1px white;
+			padding: 10px 10px;
+			background-color: rgb(255,168,52);
+			color: white;
+		}
+		</style>
+	</head>
+	
+	<body style="text-align:center;">
+		<header id="header">
+			<ul>
+				
+			</ul>
+			<table>
+				<tr>
+				<td><a href="../index.php"><img src="../index/img/home.png" width="25px" height="25px"></a></td>
+				<td><a href="../index.php"><h1>Affittamenti.ch</h1></a></td>
+				</tr>
+			</table>
+		</header>
+		<div>
+			<form enctype="multipart/form-data" name="AggiuntaAppartamento" method="POST" action="AggiuntaAppartamento.php">
+				<table width="500px" id="tb">
+					<tr>
+						<td colspan="2">
+							<label>I campi con * sono obbligatori</label>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Titolo"><span>Titolo * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Titolo" id="Titolo" maxlength="80" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Paese"><span>Paese * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Paese" id="Paese" maxlength="80" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Regione"><span>Regione * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Regione" id="Regione" maxlength="80" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Foto"><span>Foto</span></label>
+						</td>
+						<td valign="top" id="fotos">
+							<input type="file" multiple name="Foto[]" id="Foto" maxlength="80" style="width:200px">
+						</td>
+						<td>
+							<!--<span onclick="addFoto()" style="width: 10px; height: 10px; border: 0.5px solid black; background: lightgray; padding: 4px;">+</span>-->
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Pianta"><span>Pianta</span></label>
+						</td>
+						<td valign="top">
+							<input type="file" name="Pianta" id="Pianta" maxlength="80" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="NumeroLocali"><span>N° Locali * </span></label>
+						</td>
+						<td valign="top">
+							<input type="number" step="0.5" name="NumeroLocali" id="NumeroLocali" maxlength="80" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Posteggio"><span>Posteggio</span></label>
+						</td>
+						<td valign="top">
+							<select id="Posteggio" name="Posteggio">
+								<option id="Si" value="Si">Si</option>
+								<option id="No" value="No" selected="selected">No</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Prezzo"><span>Prezzo * </span></label>
+						</td>
+						<td valign="top">
+							<input type="number" name="Prezzo" id="Prezzo" maxlength="80" style="width:200px">
+							<select id="SceltaPrezzo" name="SceltaPrezzo" style="width: 100px;">
+								<option id="AltaStagione" value="AltaStagione">Alta stagione</option>
+								<option id="BassaStagione" value="BassaStagione">Bassa stagione</option>
+								<option id="Settimanale" value="Settimanale">Settimanale</option>
+								<option id="Mensile" value="Mensile" selected="selected">Mensile</option>
+								<option id="Annuale" value="Annuale">Annuale</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Spese"><span>Spese</span></label>
+						</td>
+						<td valign="top" id="spese">
+							<input type="text" name="Spesa" id="Spesa" maxlength="100" style="width:200px">
+							<input type="number" step="0.05" name="CostoSpesa" id="CostoSpesa" maxlength="100" style="width:100px">
+						</td>
+						<td>
+							<span onclick="addSpesa()" style="width: 10px; height: 10px; border: 0.5px solid black; background: lightgray; padding: 4px;">+</span>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Accessorio"><span>Accessori</span></label>
+						</td>
+						<td valign="top" id="accessori">
+							<input type="text" name="Accessorio" id="Accessorio" maxlength="100" style="width:200px">
+						</td>
+						<td>
+							<span onclick="addAccessorio()" style="width: 10px; height: 10px; border: 0.5px solid black; background: lightgray; padding: 4px;">+</span>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Ammobiliato"><span>Ammobiliato</span></label>
+						</td>
+						<td valign="top">
+							<select id="Ammobiliato" name="Ammobiliato">
+								<option id="Si" value="Si">Si</option>
+								<option id="No" value="No" selected="selected">No</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Fumatori"><span>Fumatori</span></label>
+						</td>
+						<td valign="top">
+							<select id="Fumatori" name="Fumatori">
+								<option id="Si" value="Si">Si</option>
+								<option id="No" value="No" selected="selected">No</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Animali"><span>Animali</span></label>
+						</td>
+						<td valign="top">
+							<select id="Animali" name="Animali">
+								<option id="Si" value="Si">Si</option>
+								<option id="No" value="No" selected="selected">No</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Bambini"><span>Bambini</span></label>
+						</td>
+						<td valign="top">
+							<select id="Bambini" name="Bambini">
+								<option id="Si" value="Si">Si</option>
+								<option id="No" value="No" selected="selected">No</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Ubicazione"><span>Indirizzo * </span></label>
+						</td>
+						<td valign="top">
+							<input type="text" name="Indirizzo" id="Indirizzo" maxlength="100" style="width:200px">
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<label for="Commenti"><span>Commenti * </span></label>
+						</td>
+						<td valign="top">
+							<textarea name="Commenti" id="Commenti" rows="4" cols="50"></textarea>
+						</td>
+					</tr>
+					<input type="number" id="acc" name="acc" style="display:none;" value="1"></input>
+					<input type="number" id="sp" name="sp" style="display:none;" value="1"></input>
+					<tr>
+						<td colspan="2" style="text-align:center" >
+						<br />
+							<input type="submit" value=" Aggiungi! " id="submit" style="width:200px;height:40px">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<script>
+			//Variabili che indicano il numero di input riguardanti la spesa
+			//In modo da concatenarli al name dell'elemento
+			//per poterlo riconoscere in PHP
+			var s = 1;
+			var c = 1;
+			//Funzione che aggiunge gli elementi per una nuova spesa
+			function addSpesa(){
+				var nomeSpesa = document.createElement("input");
+				var costoSpesa = document.createElement("input");
+				nomeSpesa.setAttribute("type", "text");
+				nomeSpesa.setAttribute("name", "Spesa"+s);
+				s++;
+				nomeSpesa.setAttribute("maxlength", "100");
+				nomeSpesa.setAttribute("style", "width: 200px;");
+				costoSpesa.setAttribute("type", "number");
+				costoSpesa.setAttribute("name", "CostoSpesa"+c);
+				costoSpesa.setAttribute("step", "0.05");
+				costoSpesa.setAttribute("maxlength", "100");
+				costoSpesa.setAttribute("min" ,"0");
+				costoSpesa.setAttribute("style", "width: 100px;");
+				document.getElementById("spese").appendChild(nomeSpesa);
+				document.getElementById("spese").appendChild(costoSpesa);
+				document.getElementById("sp").value = parseInt(document.getElementById("sp").value)+1; 
+			}
+			//variabile che indica il numero di elementi riguardanti gli accessori
+			//per poterlo riconoscere in PHP
+			var a = 1;
+			//Funzione che aggiunge un elemento per un nuovo accessorio
+			function addAccessorio(){
+				var nomeAccessorio = document.createElement("input");
+				nomeAccessorio.setAttribute("type", "text");
+				nomeAccessorio.setAttribute("name", "Accessorio"+a);
+				a++;
+				nomeAccessorio.setAttribute("maxlength", "100");
+				nomeAccessorio.setAttribute("style", "width:200px;");
+				document.getElementById("accessori").appendChild(nomeAccessorio);
+				document.getElementById("acc").value = parseInt(document.getElementById("acc").value)+1;
+			}
+		</script>
+		<footer id="footer">
+		&#169 2018 Gabriele Dominelli I3AA, Alessandro Spagnuolo I3BB
+		</footer>
+	</body>
+</html>
