@@ -16,7 +16,7 @@ create table if not EXISTS appartamento(
 	id int primary key,
     bambini tinyint,
     fumatori tinyint,
-    piantina blob,
+    piantina mediumblob,
     animali tinyint,
     titolo varchar(50),
     regione varchar(50),
