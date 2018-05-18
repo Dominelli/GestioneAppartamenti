@@ -147,7 +147,16 @@
 				else {
 					var output = "<ul>";
 					output += "Benvenuto <?php echo $username;?> ";
-					if(<?php echo $isProprietario;?> == 1) output += "<a href='aggiuntaAppartamento/AggiuntaAppartamento.htm'><li>Aggiungi appartamento</li></a>";
+					//if(<?php echo $isProprietario;?> == 1) output += "<a href='aggiuntaAppartamento/AggiuntaAppartamento.htm'><li>Aggiungi appartamento</li></a>";
+					if(<?php echo $isProprietario;?> == 1) {
+						output += '<li class="dropdown">';
+						output += "Appartamenti";
+						output += '<div class="dropdown-content">';
+						output += '<a href="aggiuntaAppartamento/AggiuntaAppartamento.htm">Aggiungi Appartamenti</a><br>';
+						output += '<a href="riservazioni/riservazioni.php">Gestisci Riservazioni</a>';
+						output += "</div>";
+						output += "</li>";
+					}
 					output += "<a href='index/script/logout.php'><li>Log Out</li></a>";
 					output += "</ul>";
 					
@@ -226,18 +235,16 @@
 					if(i == 0) document.getElementById("ultimoAnnuncio").innerHTML = output;
 					else document.getElementById("altriAnnunci").innerHTML += output;
 				}
+				if(appartamenti.length < 2) {
+					
+				}
 			}
 		</script>
 	</head>
 	
 	<body onload="displayPricePreview(), userHeader(), showRooms()">
 		<header>
-			<div id="logInHeader">
-				<!--<ul>
-					<a href="registrazione/Registrazione.htm"><li>Registrati</li></a>
-					<a href="login/Login.htm"><li>Accedi</li></a>
-				</ul>-->
-			</div>
+			<div id="logInHeader"></div>
 			<table>
 				<tr>
 					<td><a href="#"><img src="index/img/home.png" width="25px" height="25px"></a></td>
@@ -336,136 +343,10 @@
 				<td style="width: 100%;">
 				<main id="main">
 					<h3>Ultimo Annuncio</h3>
-					<div id="ultimoAnnuncio">
-						<!--<a href="#">
-							<section id="lastRoom" class="room">
-								<table>
-									<tr>
-										<td>TITOLO</td>
-										<td>CHF / mese</td>
-										<td>No. locali</td>
-										<td rowspan="2">
-											<img src="index/img/default_room.png" class="roomImg">
-										</td>
-									</tr>
-									<tr>
-										<td colspan="3">
-										Descrizione:<br>
-										Sono un annuncio
-										</td>
-									</tr>
-								</table>
-							</section>
-						</a>-->
-					</div>
+					<div id="ultimoAnnuncio"></div>
 					<hr>
 					<h3>Altri Annunci</h3>
-					<div id="altriAnnunci">
-						<!--<a href="#">
-							<section class="room">
-								<table>
-									<tr>
-										<td>TITOLO</td>
-										<td>CHF / mese</td>
-										<td>No. locali</td>
-										<td rowspan="2">
-											<img src="index/img/default_room.png" class="roomImg">
-										</td>
-									</tr>
-									<tr>
-										<td colspan="3">
-										Descrizione:<br>
-										Sono un annuncio
-										</td>
-									</tr>
-								</table>
-							</section>
-						</a>
-						
-						<a href="#">
-							<section class="room">
-								<table>
-									<tr>
-										<td>TITOLO</td>
-										<td>CHF / mese</td>
-										<td>No. locali</td>
-										<td rowspan="2">
-											<img src="index/img/default_room.png" class="roomImg">
-										</td>
-									</tr>
-									<tr>
-										<td colspan="3">
-										Descrizione:<br>
-										Sono un annuncio
-										</td>
-									</tr>
-								</table>
-							</section>
-						</a>
-						
-						<a href="#">
-							<section class="room">
-								<table>
-									<tr>
-										<td>TITOLO</td>
-										<td>CHF / mese</td>
-										<td>No. locali</td>
-										<td rowspan="2">
-											<img src="index/img/default_room.png" class="roomImg">
-										</td>
-									</tr>
-									<tr>
-										<td colspan="3">
-										Descrizione:<br>
-										Sono un annuncio
-										</td>
-									</tr>
-								</table>
-							</section>
-						</a>
-						
-						<a href="#">
-							<section class="room">
-								<table>
-									<tr>
-										<td>TITOLO</td>
-										<td>CHF / mese</td>
-										<td>No. locali</td>
-										<td rowspan="2">
-											<img src="index/img/default_room.png" class="roomImg">
-										</td>
-									</tr>
-									<tr>
-										<td colspan="3">
-										Descrizione:<br>
-										Sono un annuncio
-										</td>
-									</tr>
-								</table>
-							</section>
-						</a>
-						
-						<a href="#">
-							<section class="room">
-								<table>
-									<tr>
-										<td>TITOLO</td>
-										<td>CHF / mese</td>
-										<td>No. locali</td>
-										<td rowspan="2">
-											<img src="index/img/default_room.png" class="roomImg">
-										</td>
-									</tr>
-									<tr>
-										<td colspan="3">
-										Descrizione:<br>
-										Sono un annuncio
-										</td>
-									</tr>
-								</table>
-							</section>
-						</a>-->
-					</div>
+					<div id="altriAnnunci"></div>
 				</main>
 				</td>
 			</tr>
