@@ -341,10 +341,17 @@ foreign key(username_utente) references utente(username) on delete cascade on up
 
 Questo é il diagramma ER del database generato per consentire lo scambio dei dati tramite le varie pagine web.
 
+![Scherma E-R](img/Schema_ER_Database.jpg)
 
 ### Design delle interfacce
 
-
+Qui di seguito sono riportate le progettazioni iniziali per tutte le pagine che abbiamo realizzato in questo progetto:
+![Pagina Principale](img/Mockup_Index.JPG)
+![LogIn](img/MockUp_Login.jpg)
+![Registrazione](img/MockUp_Registrazione.jpg)
+![Aggiunta appartamento](img/MockUp_AggiuntaAppartamento.JPG)
+![Visualizzazione appartamento](img/MockUp_Visualizzazione_Appartamento.jpg)
+![Gestione Riservazioni](img/MockUp_Gestione_Riservazioni.JPG)
 
 ## Implementazione
 
