@@ -68,7 +68,7 @@ In this project our goal is to produce a web application, capable to handle flat
 |**Sub-ID**  | Requisito                                      |
 |**001**     | Sarà presente una descrizione del sito.                  |
 |**002**     | Lista degli appartamenti, 6 per volta.              |
-|**003**     | Pulsanti per login/istrizione.              | 
+|**003**     | Pulsanti per login/iscrizione.              | 
 
 
 |ID          |REQ-002                                         |
@@ -412,23 +412,6 @@ In caso che manchino delle informazioni nel form, l'utente viene mandato ad una 
 Nel form c'è il bottone di submit che manda il contenuto del form tramite il metodo POST alla pagina php che prende i dati e li mette nel database e allo stesso tempo manda un'email all'utente interessato per permettere la registrazione totale del proprio account, dato che inizialmente il profilo viene inserito nel databse come utente non attivato quindi con stato = 0:
 
 ~~~php
-//dichiaro le variabili che indicano come connettersi al database
-$dbname = "efof_gestaff_2018";
-$servername = "efof.myd.infomaniak.com";
-$uname = "efof_gestaff2018";
-$pword = "GestAff_Admin2018";
-//creo una connessione
-$conn = new mysqli($servername, $uname, $pword);
-//controllo la connessione
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-}
-//ricreo la connessione ma con il database
-$conn = new mysqli($servername, $uname, $pword, $dbname);
-//Ricontrollo la connessione
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-} 
 //preparo la query che inserisce l'utente che si vuole registrare
 $sql = "INSERT INTO utente VALUES ('$name', '$surname', '$username', '$email', '$password', '$tel_phone', '$tel_office', 0, 0, 0)";
 //controllo che la query non dia errori
@@ -538,28 +521,6 @@ La pagina di login ha un form HTML che contiene una tabella che a sua volta cont
 La pagina a cui viene reindirizzato l'utente tramite il bottone di submit si occupa di controllare che l'account con cui si vuole fare il login esista e che sia attivato, quindi con lo stato = 1:
 
 ~~~php
-//prendo i valori dell'utente
-$username = $_POST['Username'];
-$password = $_POST['Password'];
-
-//preparo le variabili per la connessione al database
-$dbname = "efof_gestaff_2018";
-$servername = "efof.myd.infomaniak.com";
-$uname = "efof_gestaff2018";
-$pword = "GestAff_Admin2018";
-//creo una connessione
-$conn = new mysqli($servername, $uname, $pword);
-//controllo la connessione
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-}
-//ricreo la connessione direttamente al database
-$conn = new mysqli($servername, $uname, $pword, $dbname);
-//ricontrollo la connessione
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-} 
-
 $user = array();
 $valore = array();
 array_push($user, $username);
@@ -814,23 +775,6 @@ $id;
 $titolo;
 if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])){
 	$id = $_GET['id'];
-}
-//variabili che servono a connettersi al database
-$dbname = "efof_gestaff_2018";
-$servername = "efof.myd.infomaniak.com";
-$uname = "efof_gestaff2018";
-$pword = "GestAff_Admin2018";
-//creo una connessione
-$conn = new mysqli($servername, $uname, $pword);
-//controllo la connessione
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-}
-//ricreo la connessione ma direttamente al database
-$conn = new mysqli($servername, $uname, $pword, $dbname);
-//ricontrollo la connessione
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
 }
 //prendo il titolo dell'appartamento corrente
 $sql = "select titolo from appartamento where id = $id";
@@ -1237,7 +1181,7 @@ function showRooms(){
 	}
 }
 ~~~
-*Nota:* Le immagini non possono essere direttamente scritte, è prima necessario aggiungere un header con la sua estensione e poi tradurle in base64.
+**Nota:** *Le immagini non possono essere direttamente scritte, è prima necessario aggiungere un header con la sua estensione e poi tradurle in base64.*
 
 Finalmente è possibile parlare dei filtri di ricerca. L'HTML presente nella pagina è molto basilare: un semplice form organizzato a tabella che permette la scelta tramite un periodo, il numero di locali ed il prezzo massimo.
 
@@ -1606,13 +1550,79 @@ Le tabelle  sottostanti rappresentano i test che abbiamo svolto in base hai requ
 |**Procedura**     | - Dalla pagina principale cliccare su di un appartamento mostrato a schermo.|
 |**Risultati attesi** |Essere reindirizzati alla pagina che mostra le informazioni dell'appartamento cliccato.|
 
+|Test Case      | TC-006                              |
+|---------------|--------------------------------------|
+|**Nome**       |Filtro pagina principale|
+|**Riferimento**|REQ-002                               |
+|**Descrizione**|Visualizzazione dell'appartamento|
+|**Prerequisiti**||
+|**Procedura**     | - Inserimento di informazioni dei campi del form. - Dalla pagina principale premere il pulsante di ricerca.|
+|**Risultati attesi** |Ottenere gli appartamenti correttamente filtrati e mostrati a schermo.|
+
+|Test Case      | TC-007                              |
+|---------------|--------------------------------------|
+|**Nome**       |Accesso di default alla pagina principale|
+|**Riferimento**|REQ-001                               |
+|**Descrizione**|Accesso automatico da url alla pagina principale della struttura del sito.|
+|**Prerequisiti**||
+|**Procedura**     | - Ricerca tramite browser del sito [gestaff.samtinfo.ch](https://gestaff.samtinfo.ch)|
+|**Risultati attesi** |Apertura automatica della pagina contenente gli ultimi 6 appartamenti.|
+
+|Test Case      | TC-008                              |
+|---------------|--------------------------------------|
+|**Nome**       |Accesso alle pagine di login e registrazione|
+|**Riferimento**|REQ-001                               |
+|**Descrizione**|Accesso alle pagine corrette di login e registrazione dalla pagina principale|
+|**Prerequisiti**||
+|**Procedura**     | - Click di uno dei 2 bottoni "Registrati"/"Accedi"|
+|**Risultati attesi** |Apertura della pagina corretta in base al pulsante premuto.|
+
+|Test Case      | TC-009                              |
+|---------------|--------------------------------------|
+|**Nome**       |Disposizione degli ultimi 6 appartamenti|
+|**Riferimento**|REQ-001                               |
+|**Descrizione**|Accesso alle pagine corrette di login e registrazione dalla pagina principale|
+|**Prerequisiti**||
+|**Procedura**     | - Apertura della pagina principale|
+|**Risultati attesi** |Una lista degli ultimi 6 appartamenti aggiunti.|
+
+|Test Case      | TC-010                              |
+|---------------|--------------------------------------|
+|**Nome**       |Limitazioni di un utente non registrato|
+|**Riferimento**|REQ-007                              |
+|**Descrizione**|Un utente non registato non può diventare proprietario|
+|**Prerequisiti**||
+|**Procedura**     ||
+|**Risultati attesi** |Una utente non registrato non potrà diventare proprietario in quanto non può essere nemmeno trovato nel DataBase.|
+
+|Test Case      | TC-011                              |
+|---------------|--------------------------------------|
+|**Nome**       |Un utente non registrato non può vedere i contatti|
+|**Riferimento**|REQ-007                              |
+|**Descrizione**|Un utente non registato non può vedere i dettagli di contatto di un'altro utente proprietario.|
+|**Prerequisiti**||
+|**Procedura**     | - Entrare nel sito senza aver effettuato un login. - Aprire un qualsiasi appartamento in dettaglio. |
+|**Risultati attesi** |I riquadri contententi i contatti dell'utente proprietario dell'appartamento, non sono visibili.|
+
+|Test Case      | TC-012                              |
+|---------------|--------------------------------------|
+|**Nome**       |Aggiunta di un appartamento quando proprietario|
+|**Riferimento**|REQ-009                              |
+|**Descrizione**|Possibilità per l'utente proprietario di aggiungere un nuovo appartamento.|
+|**Prerequisiti**||
+|**Procedura**     | - Effettuare il login. - Posizionare il cursore del mouse su "Appartamenti". - Selezionare "Aggiungi Appartamenti". |
+|**Risultati attesi** |L'utente viene reindirizzato sulla pagina per l'aggiunta di un nuovo annuncio.|
+
 ### Risultati test
 
-I risultati dei test sono tutti andati a buon fine, da come abbiamo provato molteplici volte tutte le pagine funzionano correttamente senza alcun tipo di errore non desiderato.
+I risultati dei test sono tutti andati a buon fine siccome abbiamo testato molteplici volte tutte le pagine.
+
 
 ### Mancanze e limitazioni conosciute
 
-
+- Nel TC-006 invece di cercare degli appartamenti liberi nel periodo dato, cerca quelli occupati.
+- Nella pagina principale non esistono dei bottoni a fine pagina che permettano di guardare altri risultati oltre ai 6 pre-caricati.
+- Non esiste nessuna interfaccia grafica che permetta la promozione da utente regisrato a utente proprietario. Questo passaggio avviene direttamente modificando il campo appropriato in PhpMyAdmin. (Questo problema non è poi tanto grave, in quanto è pur sembre un admin a dover compiere la promozione.)
 
 ## Consuntivo
 
@@ -1622,40 +1632,23 @@ Il progetto è andato come speravamo e abbiamo rispettato al completo i tempi. S
 
 ## Conclusioni
 
-La soluzione che abbiamo portato ci soddisfa ma non al 100%. Il nostro programma avrà sicuramente un impatto positivo con le persone che lo proveranno, porterà molto divertimento. Noi non pensiamo che il nostro programma cambierà il mondo ma siamo sicuri che porterà una piccola svolta, sicurament più per noi stessi che per gli altri. Possiamo definire questo progetto un successo importante, più che successo questo progetto ci porta un forte orgoglio personale sopratutto perchè verrà utilizzato da gente esterna alla nostra scuola. Questo progetto é una grande aggiunta alla nostra crescita professionale, ci ha dato molto questo progetto sia come competenze lavorative che come competenze sociali.
-
+Siamo contenti di come questo progetto si sia concluso. Entrambi eravamo piuttosto in ansia a cuasa della grande mole di lavoro che ci avrebbe aspettato. Questo progetto é una grande aggiunta alla nostra crescita professionale, ci ha dato sia competenze lavorative che competenze sociali.
 
 ### Sviluppi futuri
- Come miglioria potrebbe essere implementato in una scala molto più grande rispetto che un semplice schermo con una webcam. Sarebbe bello poter collegare il nostro progetto su delle videocamere reali in modo da riuscire a riconoscere una quantità maggiore di volti. Mentre come sviluppo futuro vorremmo riuscire a migliorare il nostro prodotto, in modo da avere un programma che funzioni alla perfezione.
+
+Come primo passaggio sarebbe indispensiabile aggiungere tutti i punti trattati nelle "Mancanze e limitazioni conosciute". Inoltre sarebbe necessario una miglior progettazione delle interfaccie grafiche in quanto, quelle presenti adesso, non rendono uno stile in linea con lo scopo del progetto e sufficientemente moderno.
 
 ### Considerazioni personali
-  Con questo progetto abbiamo imparato cosa vuol dire lavoro di squadra, di quanto esso sia estremamente importante e di come con dei collaboratori sia più facile e eccitante lavorare.
+
+Questo progetto ci ha sicuramente portato a rinfrescare la memoria su molti dei nostri moduli. È stato interessante come alcune di quelle conoscenze siano ancora ben salde e come altre invece abbiano avuto bisogno di un piccolo ripasso!
 
 ## Sitografia
 
-- https://trackingjs.com/, *Tracking.js
-    La libreira per implementare il riconoscimento facciale.
+- https://www.w3schools.com/, *W3Schools.com
+    Utile per riguardare piccole regole di HTML, PHP e JavaScript.
     
-- https://www.wikihow.it/Creare-un-Web-Server-su-Raspberry-Pi, *Manuale web-server linux
-    Abbiamo usato questo sito per creare un web server su raspberry.
+- http://ch1.php.net/manual/en/, *Documentazione ufficiale PHP
+    Ulteriori informazioni su PHP.
     
-- https://www.raspberrypi.org/downloads/raspbian/, *Sitema operativo Raspbian
-    Abbamo scaricato il sistema operativo direttamente dal sito del produttore di raspberry.
-    
-- http://www.vemp.org/raspberrypi/preparare-una-card-sd-con-raspbian/, *Programma per caricare il .img di raspbian su raspberry.
-- https://www.w3schools.com/js/, *Guida JavaScript
-    Abbiamo utilizzato questa guida per eventuali errori o mancanze delle nostre competenze sul linguaggio.
-    
-- https://www.w3schools.com/php/, *Giuida Php
-    Abbiamo utlizzato questa guida in caso di mancanze o scarse competenze.
-- http://www.chartjs.org/, *pagina per i grafici
-    
-
-## Allegati
-
-Elenco degli allegati, esempio:
-
--   Diari di lavoro
-
--   Guida utente / Manuale di utilizzo
-
+- https://www.immoscout24.ch/it, *Sito di Immo Scout 24
+    Da qui abbiamo preso alcuni spunti di progettazione.
