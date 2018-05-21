@@ -249,7 +249,7 @@ Non necessitando di mezzi specifici, gli unici costi sono quelli dei dipendenti.
 
 |Costo per ora| Ore | Persone | Totale |
 |----------------|----------------|----------------|----------------|
-|60 fr.       |72|2|8640 fr.|
+|60 fr.       |60|2|7200 fr.|
 
 
 ## Progettazione
