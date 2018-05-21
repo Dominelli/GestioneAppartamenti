@@ -1024,6 +1024,95 @@ if(piantina == 'bnVsbA==')
 	document.getElementById('piantina').innerHTML = "<img src='../index/img/default_room.png'>";
 ~~~
 
+### Creazione pagina principale
+
+Adesso invece parliamo della pagina principale.
+Questa è la pagina più complessa e strutturata di tutto il progetto, in quanto rappresenta il collegamento tra tutte le pagine della struttura.
+L'header della pagina cambia dinamicamente in base al tipo di utente che lo sta utilizzando (user, utente registrato, utente proprietario/admin). Lo username dell'utente ci è dato saperlo grazie alla pagina di log in, che lo scrive nella variabile SESSION.
+
+~~~html
+<header>
+	<div id="logInHeader"></div>
+	<table>
+		<tr>
+			<td><a href="index.php"><img src="index/img/home.png" width="25px" height="25px"></a></td>
+			<td><a href="index.php"><h1>Affittamenti.ch</h1></a></td>
+		</tr>
+	</table>
+</header>
+~~~
+
+Prima di tutto PHP determina, tramite una query di conferma, l'esistenza dell'utente e la suo tipologia.
+
+~~~php
+$isLogged = 0;
+$isProprietario = 0;
+$username = "";
+if(isset($_SESSION["user"])) {
+	$username = $_SESSION["user"];
+	
+	//preparo la query che verifica che l'utente inserito sia esistente
+	$sql = "select username from utente where username = '".$username."'";
+	if($conn->query($sql) == FALSE) {
+		echo "<p>C'è stato un errore con il tuo login</p><p>Per favore torna indietro e riprova</p>";
+	}
+	$result = $conn->query($sql);
+	//segnalo che adesso l'utente è stato confermato
+	if ($result->num_rows > 0) {
+		$isLogged = 1;
+		
+	
+		//controllo che sia proprietario
+		$sql = "select proprietario from utente where username = '".$username."'";
+		if($conn->query($sql) == FALSE) {
+			echo "<p>C'è stato un errore con il tuo login</p><p>Per favore torna indietro e riprova</p>";
+		}
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()) {
+				if($row["proprietario"] > 0) $isProprietario = 1;
+			}
+		}
+	}
+}
+~~~
+
+Dopodichè, passando per javascript, avviene l'effettiva modifica dell'interfaccia.
+
+~~~javascript
+//Aggiusta l'header in base al tipo di utente
+function userHeader() {
+	if(<?php echo $isLogged;?> == 0) {
+		document.getElementById("logInHeader").innerHTML = "<ul><a href='registrazione/Registrazione.htm'><li>Registrati</li></a><a href='login/Login.htm'><li>Accedi</li></a></ul>";
+	}
+	else {
+		var output = "<ul>";
+		output += "Benvenuto <?php echo $username;?> ";
+		//if(<?php echo $isProprietario;?> == 1) output += "<a href='aggiuntaAppartamento/AggiuntaAppartamento.htm'><li>Aggiungi appartamento</li></a>";
+		if(<?php echo $isProprietario;?> == 1) {
+			output += '<li class="dropdown">';
+			output += "Appartamenti";
+			output += '<div class="dropdown-content">';
+			output += '<a href="aggiuntaAppartamento/AggiuntaAppartamento.htm">Aggiungi Appartamenti</a><br>';
+			output += '<a href="riservazioni/riservazioni.php">Gestisci Riservazioni</a>';
+			output += "</div>";
+			output += "</li>";
+		}
+		output += "<a href='index/script/logout.php'><li>Log Out</li></a>";
+		output += "</ul>";
+		
+		document.getElementById("logInHeader").innerHTML = output;
+	}
+}
+~~~
+
+Avendo adesso confermato l'identità dell'utente, non resta altro che mostrare gli appartamenti.
+PHP divide in 2 questo codice. La prima parte è quella standard (ovvero il caricamento degli ultimi 6 appartamenti inseriti). La seconda invece si preoccupa di caricare gli appartamenti provenienti dalla pagina filter.php, che discuteremo in seguito.
+
+~~~php
+
+~~~
+
 ### Creazione Database
 
 Per far si che le pagine comunicano e si scambino i dati tra di solo é stato necessario creare un database.
