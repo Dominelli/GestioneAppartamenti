@@ -256,48 +256,95 @@ Non necessitando di mezzi specifici, gli unici costi sono quelli dei dipendenti.
 
 ### Design dei dati e database
 
-Il database che abbiamo creato è molto basico. Presenta due tabelle, la tabella Amministratore dove vengono contenuti i seguenti campi.
+Il database che abbiamo creato è abbastanza complesso, difatti abbiamo dovuto riguradare diversi aspetti prima di arrivare alla soluzione finale.
 
 ```sql
 
-(NomeUtente(PK),Id_WebCam(FK),Password,Densità_Bordo,
- Conteggio_Secondi, Dimensione_step,Scala_iniziale)
+use efof_gestaff_2018;
+create table if not EXISTS utente(
+nome varchar(50) not null,
+cognome varchar(50) not null,
+username varchar(50), 
+email varchar(50),
+password varchar(50),
+n_cellulare int not null,
+n_ufficio int not null,
+admin tinyint,
+proprietario tinyint,
+stato int,
+primary key(username)
+);
+create table if not EXISTS appartamento(
+id int primary key,
+bambini tinyint,
+fumatori tinyint,
+piantina mediumblob,
+animali tinyint,
+titolo varchar(50),
+regione varchar(50),
+n_locali int,
+posteggio tinyint,
+paese varchar(50),
+ammobiliato tinyint,
+ubicazione varchar(50),
+commenti text,
+username_prop varchar(50),
+foreign key(username_prop) references utente(username) on delete cascade on update cascade
+);
+
+create table if not EXISTS foto(
+id int AUTO_INCREMENT PRIMARY KEY,
+foto mediumblob,
+id_appartamento int,
+foreign key(id_appartamento) REFERENCES appartamento(id) on delete cascade on update cascade
+);
+create table if not EXISTS accessori(
+nome varchar(30),
+id_appartamento int,
+primary key(nome, id_appartamento),
+foreign key(id_appartamento) REFERENCES appartamento(id) on delete cascade on update cascade
+);
+create table if not EXISTS tipo(
+tipo varchar(50) primary KEY
+);
+create table if not EXISTS prezzo(
+prezzo int,
+tipo varchar(50),
+id_appartamento int,
+foreign key(tipo) references tipo(tipo) on delete cascade on update cascade,
+foreign key(id_appartamento) references appartamento(id) on delete cascade on update cascade,
+primary key (prezzo, tipo, id_appartamento)
+);
+create table if not EXISTS spesa(
+id int AUTO_INCREMENT PRIMARY KEY,
+nome varchar(50),
+prezzo int,
+id_appartamento int,
+foreign key(id_appartamento) references appartamento(id) on delete cascade on update cascade
+);
+create table if not EXISTS riserva(
+data_inizio date,
+data_fine date,
+id_appartamento int,
+username_utente varchar(50),
+email_utente varchar(50),
+password_utente varchar(50),
+primary key(data_inizio, data_fine, id_appartamento, username_utente, email_utente, password_utente),
+foreign key(id_appartamento) references appartamento(id) on delete cascade on update cascade,
+foreign key(username_utente) references utente(username) on delete cascade on update cascade
+);
+
  
 ```
-
-Mentre la seconda tabella chiamata WebCam che contiene:
-
-```sql
-
-(Id_Webcam(PK),Orario_inizio,Orario_fine,Data)
-
-```
-Le due tabelle sono collegate tramite una relazione molti a uno chiamata "può avere".
 
 ### Schema E-R, schema logico e descrizione.
 
 Questo é il diagramma ER del database generato per consentire lo scambio dei dati tramite le varie pagine web.
 
-![Pagina WebCam](immagini/schemaER.png)
 
 ### Design delle interfacce
 
-Prima di iniziare a scrivere il codice abbiamo scelto assime al gruppo una struttura base sel sito, di come vorremmo che esso diventi. 
-Per la pagina che riguarda la webcam, cioè dove l`utente vede sè stesso abbiamo pensato a un approccio molto minimale.
 
-![Pagina WebCam](immagini/MockupCam.PNG)
-
-Mentre per la pagina dove verranno inseriti i grafici abbiamo pensato a un approccio un po meno minimale ma più adatto alla situazione.
-
-![Pagina Gafici](immagini/MockuoGrafici.png)
-
-Per la terza e ultima pagina cioè la pagina dove l` amminitratore potrà cambiare le impostazioni della webcam o della pagina. Come prima cosa dovrà coparire la pagina di login:
-
-![Pagina Gafici](immagini/Mockup_Login.png)
-
-Secondariamente una volta effettuato il login. L` amministratore avrà il diritto di cambiare le impostazioni a suo piacimento.
-
-![Pagina Gafici](immagini/Mockup_Settings.png)
 
 ## Implementazione
 
@@ -963,149 +1010,11 @@ if(piantina == 'bnVsbA==')
 	document.getElementById('piantina').innerHTML = "<img src='../index/img/default_room.png'>";
 ~~~
 
-**Ognuna di queste informazioni saranno poi fondamentali per la creazione dei grafici di statistica!**
-
-Così è come la pagina mostrala sua forma:
-
-![SO WebCam](immagini/paginaWebCam.PNG)
-
-Con il corretto rilevamento di ogni faccia sullo schermo (contenuto in un oggetto "rect"), viene eseguito un codice JavaScript. Per questa operazione si utilizza un canvas su HTML (qui chiamato "context") che permette di disegnare sullo schermo figure in maniera semplice.
-Il codice qui riportato permette di definire i colori del rettangolo (bordo e testo), disegnarlo e scrivere del testo di informazioni (come l'ID attribuito alle facce e le coordinate che lo localizzano).
-
-~~~javascript
-context.strokeStyle = 'red';
-context.strokeRect(rect.x, rect.y, rect.width, rect.height);
-context.font = '13px Helvetica';
-context.fillStyle = "#fff";
-context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
-context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
-context.fillText('id: ' + ID, rect.x + rect.width + 5, rect.y + 33);
-~~~
-
-Per ciò che riguarda il passaggio dei dati al database ci siamo dovuti collegare al database tramite php ed abbiamo preso i dati ricevuti dalla pagina e li abbiamo inseriti nell'apposita tabella del database.
-
-~~~php
-$sql = "INSERT INTO webcam (Orario_inizio, Orario_fine, Data) 
-		VALUES (".$Orario_inizio.", ".$Orario_fine.", ".$Data.");";
-if($conn->query($sql) == FALSE) {
-  echo "invio non riuscito!";
-}
-
-~~~
-
-### Creazione pagina Grafici
-La pagina grafici esegue una continua sincronizzazione sul DataBase affinchè tutti i dati siano sempre aggiornati.
-La sua funzione è quella di mostrare 2 grafici:
-1. Mostrare la quantità di persone specchiati nella WebCam per ogni fascia oraria.
-2. Mostrare il tempo medio di tracking per ogni fascia oraria.
-
-Tramite una ricerca su Internet siamo venuti a conoscenza di una libreria specializzata nel dispaly di grafici non troppo dispendiosa per quanto riguarda le nostre singole conoscenze personali: [Chart.js](http://www.chartjs.org/).
-
-Per creare i grafici mi sono dapprima connesso al database ed ho preso ed inserito dentro degli array i dati della data attuale, dell'inizio e della fine di sessione.
-
-~~~php
-$sql = "SELECT Orario_inizio, Orario_fine, Data FROM webcam";
-$result = $conn->query($sql);
-			
-$Orario_inizio=array();
-$Orario_fine=array();
-$Data=array();
-$arrayIndex = 0;
-			
-if ($result->num_rows > 0) {
-	while($row = $result->fetch_assoc()) {
-		array_push($Orario_inizio, $row["Orario_inizio"]);
-		array_push($Orario_fine, $row["Orario_fine"]);
-		array_push($Data, $row["Data"]);
-	}
-} else {
-	echo "0 results";
-}
-~~~
-
-In seguito ho fatto un counter che permettesse di calcolare quante persone utilizzano l'applicazione in vari fasci d'orario. Inoltre ho utilizzato una tecnica simile anche per calcolare la media della durata di sessione per ogni utente.
-Dopo aver eseguito tutti i calcoli ed aver inserito i risultati negli array, ho creato i grafici ed inserito i dati. Per inserirli ho utilizzato più volte una tecnica di programmazione che permette l'utilizzo delle variabili presenti nella porzione di codice php e l'utilizzo diretto nella parte javascript, e l'ho inserita all'interno della parte "data" della creazione del grafico. 
-
-
-~~~javascript
-
-var dataNumeroVisite = {
-  labels: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00",             "22:00"],
-	datasets: [{
-      	label: "Numero di visite",
-				backgroundColor: "rgba(255,99,132,0.2)",
-				borderColor: "rgba(255,99,132,1)",
-				borderWidth: 2,
-				hoverBackgroundColor: "rgba(255,99,132,0.4)",
-				hoverBorderColor: "rgba(255,99,132,1)",
-				data: [<?php echo $countUsers[0]; ?>, <?php echo $countUsers[1]; ?>, <?php echo $countUsers[2]; ?>, <?php echo $countUsers[3]; ?           >, <?php echo $countUsers[4]; ?>, <?php echo $countUsers[5]; ?>, <?php echo $countUsers[6]; ?>, <?php echo $countUsers[7]; ?>,          <?php echo $countUsers[8]; ?>, <?php echo $countUsers[9]; ?>, <?php echo $countUsers[10]; ?>, <?php echo $countUsers[11]; ?>,            <?php echo $countUsers[12]; ?>,0]
-      	}]
-  };
-  
-~~~
-
-
-Questo è il risultato ottenuto:
-
-
-![Pagina Admin](immagini/PaginaGrafici.PNG)
-
-
-Da questa pagina è anche possibile per l'admin eseguire l'accesso. L'accesso avviene tramite un pulsante (che mostra la scritta "Login") 
-
-![Pulsante Login](immagini/bottoneLogin.PNG)
-
-dopo aver premuto il pulsante appare un form che permette di inserire i dati. I dati richiesti sono semplicemente username e password. 
-
-![form login](immagini/loginAdmin.PNG)
-
-Per verificare i dati è richiesto di premere il pulsante login. Se i dati inseriti sono validi verrà caricata in una nuova scheda la pagina dell'admin.
-
-### Creazione pagina admin
-
-La pagina dell'admin serve per permettere di modificare alcune impostazioni relative alla pagina della webcam. Queste impostazioni sono:
-1. Edges Density
-2. Initial Scale
-3. Step size
-La prima impostazione permette di cambiare la densità del rettangolo che si crea attorno alle faccie individuate, la seconda serve per definire la larghezza del rettangolo e la terza permette di modificare la frequenza con la quale aggiornare il frame della pagina.
-
-![Pagina Admin](immagini/paginaAdmin.PNG)
-
-per immettere i valori abbiamo usato tre input di tipo range, il valore scelto viene mostrato all'interno di altri tre input, di tipo textbox.
-
-~~~html
-$i= 0;
-$result=mysqli_query($conn,"SELECT count(*) as total from configurazione");
-$data=mysqli_fetch_assoc($result);
-while($i < $data['total']){
-	echo "<p>$Testo[$i]</p>
-	<input type='range' min='1' max='50' value='' class='slider' id='$i' name='$i' onchange='nuovoValore()'>
-	Valore: <input type='textbox' class='tbox' id='value.$i'>";
-	$i++;
-}
-~~~
-
-Questa pagina è stata ideata per fare in modo che le impostazioni venissero passate al database. Dal database le nuove impostazioni devono essere mandate alla pagina della webcam per aggiornarla.
-
-
 ### Creazione Database
 
 Per far si che le pagine comunicano e si scambino i dati tra di solo é stato necessario creare un database.
-Per crearlo abbiamo usato Heidi versione 9.4.0.5125. Heidi è un programma che permette di creare database tramite un interfaccia grafica.
-Ecco come si presenta il database su Heidi.
-
-![SO Caricamento](immagini/dbFace.png)
-
-La tabella Webcam si presenta così:
-
-![SO Caricamento](immagini/webcamDB.png)
-
-Mentre la tabella amministratore si presenta in questo modo:
-
-![SO Caricamento](immagini/amministratoreDB.png)
-
-Ora abbiamo un database in grado di comunicare i propri dati.
-
+Per crearlo abbiamo usato phpmyadmin che abbiamo ricevuto tramite email con le credenziali.
+Abbiamo semplicemente inserito il codice sql mostrato in precedenza e l'abbiamo fatto partire.
 
 ## Test
 
@@ -1115,94 +1024,62 @@ Le tabelle  sottostanti rappresentano i test che abbiamo svolto in base hai requ
 
 |Test Case      | TC-001                              |
 |---------------|--------------------------------------|
-|**Nome**       |Creazione macchina virtuale |
-|**Riferimento**|REQ-002                               |
-|**Descrizione**|Creazione macchina virtuale per gestire le cartelle su raspberry|
+|**Nome**       |Pagina di registrazione |
+|**Riferimento**|REQ-004                              |
+|**Descrizione**|Creare un utente per provare il funzionamento della pagina|
 |**Prerequisiti**||
-|**Procedura**     | - Installare un programma per gestire le macchine virtuali, noi abbuamo usato VirtualBox. - Creare una macchina virtuale linux basata su raspbian, in questo caso abbiamo usato debian|
-|**Risultati attesi** |Avere la stessa struttura di caretelle che é presente su raspbian.|
+|**Procedura**     | - Dalla pagina principale e cliccare sul pulsante con la scritta "registrazione". - Immettere i dati necessari nei campi di inserimento del form. - Cliccare il pulsante submit.|
+|**Risultati attesi** |Ricevere un email di conferma della registrazione dell'account|
 
-
-|Test Case      | TC-002                               |
+|Test Case      | TC-002                              |
 |---------------|--------------------------------------|
-|**Nome**       |Creazione pagina Web per webcam|
-|**Riferimento**|REQ-003                               |
-|**Descrizione**|Gestire il riconoscimento facciale|
-|**Prerequisiti**|- |
-|**Procedura**     | - Scaricare la libreria traking.js - Modificare la libreira con il linguaggio JavaScript. |
-|**Risultati attesi** |Avere la pagina web che riconosce le faccie e manda le informazioni al database|
-
-|Test Case      | TC-003                               |
-|---------------|--------------------------------------|
-|**Nome**       |Creazione pagina Web per grafici |
+|**Nome**       |Pagina di verifica dell'account|
 |**Riferimento**|REQ-004                               |
-|**Descrizione**|Gestire i dati mandati dalla pagina web della webcam tramite dei grafici|
-|**Prerequisiti**|- |
-|**Procedura**     | - Creare i grafici - Prendere i dati dal database e inserirli all`inerno dei grafici.|
-|**Risultati attesi** |I grafici vengono mostrati correttamente in base hai dati presi dal database. |
+|**Descrizione**|Click sul link ricevuto tramite email per verificare il proprio account|
+|**Prerequisiti**||
+|**Procedura**     | - Dalla posta personale cliccare il link ricevuto.|
+|**Risultati attesi** |Essere reindirizzati alla pagina principale senza nessun errore|
 
-|Test Case      | TC-004                               |
+|Test Case      | TC-003                              |
 |---------------|--------------------------------------|
-|**Nome**       |Creazione pagina Web per gestione dell’admin|
+|**Nome**       |Pagina di login|
+|**Riferimento**|REQ-003                               |
+|**Descrizione**|Login con il proprio utente|
+|**Prerequisiti**||
+|**Procedura**     | - Dalla pagina principale cliccare sul pulsante con scritto "login". - Immettere i propri dati. - Cliccare il pulsante di submit.|
+|**Risultati attesi** |Essere reindirizzati alla pagina principale senza nessun errore con il proprio account loggato.|
+
+|Test Case      | TC-004                              |
+|---------------|--------------------------------------|
+|**Nome**       |Pagina di aggiunta di un appartamento|
 |**Riferimento**|REQ-005                               |
-|**Descrizione**|Creazione di una pagina inserente all'accesso asmin per la modifica dei parametri della webcam |
-|**Prerequisiti**|Aver creato la pagina web per la Webcam |
-|**Procedura**     | - Creare un login con l'uso di JavaScript - Gestire la pagina Amministratore inserendo i parametri di modifica.|
-|**Risultati attesi** |L'utente admin riesce a accedere alla pagina e a modificare i parametri.|
+|**Descrizione**|Aggiunta di un appartamento in modo da inserirlo nel database|
+|**Prerequisiti**||
+|**Procedura**     | - Dalla pagina principale cliccare sul pulsante con scritto "appartamenti" e scegliere l'opzione "aggiunta appartamenti". - Immettere i dati dell'appartamento che si vuole aggiungere. - Cliccare il pulsante di submit.|
+|**Risultati attesi** |Essere reindirizzati alla pagina principale senza nessun errore.|
 
-|Test Case      | TC-005                               |
+|Test Case      | TC-005                              |
 |---------------|--------------------------------------|
-|**Nome**       |Creare una banca dati |
+|**Nome**       |Pagina di visualizzazione di un signolo appartamento|
 |**Riferimento**|REQ-006                               |
-|**Descrizione**|Creazione di una bancadati che contiene i dati raccolti dalla pagina web della Webcam|
-|**Prerequisiti**|Aver creato la pagina della webCam|
-|**Procedura**     | - Scaricare un programma per creare il database, noi abbiamo utlitzzato Heidi - Cre<re il database con gli stessi parametri della libreira presa e del codice scritto nella pagian web della Webcam.|
-|**Risultati attesi** |Il database riesce a prendere i dati delle pagine prescritte|
-
-|Test Case      | TC-006                               |
-|---------------|--------------------------------------|
-|**Nome**       |Ricerca di nuovi volti |
-|**Riferimento**|REQ-007                               |
-|**Descrizione**|I volti vengono trovati dalla pagina della Webcam|
-|**Prerequisiti**|Download libreria tracking.js |
-|**Procedura**     | - Aver installato la libreria tracking.js - Gestire il riconoscimento facciale tramite JavaScript |
-|**Risultati attesi** |La pagina della Webcam é in grado di riconoscre i volti|
-
-|Test Case      | TC-007                               |
-|---------------|--------------------------------------|
-|**Nome**       |Salvataggio delle persone sul DB|
-|**Riferimento**|REQ-008                               |
-|**Descrizione**|Questo test serve per verificare il corretto funzionamento dell'immissione dei dati all'interno del database|
-|**Prerequisiti**|aver creato il database|
-|**Procedura**     | - Collegare il database alle pagine tramite php |
-|**Risultati attesi** |I dati presi dalla webcam sono presenti all`interno del databse |
-
-|Test Case      | TC-008                               |
-|---------------|--------------------------------------|
-|**Nome**       |Utilizzo del prodotto su RaspBerry|
-|**Riferimento**|REQ-009                               |
-|**Descrizione**|Installazione del sitema operativo su Rasberry e installazione webserver|
-|**Prerequisiti**|avere un Raspberry|
-|**Procedura**     | - Caricare l`immagine del sistema operativo sul raspberry - Installare un webserver tramite in comandi opportuni|
-|**Risultati attesi** |Raspberry é effetivamente un webserver.|
-
-
-
+|**Descrizione**|Visualizzazione dell'appartamento|
+|**Prerequisiti**||
+|**Procedura**     | - Dalla pagina principale cliccare su di un appartamento mostrato a schermo.|
+|**Risultati attesi** |Essere reindirizzati alla pagina che mostra le informazioni dell'appartamento cliccato.|
 
 ### Risultati test
 
-I risultati dei test non sono male ma neanche eccelsi. I test TC-001, TC-003, TC-004,TC-005,TC-006,TC-008 sono passati. Ma il problema principale non é stato tanto la creazione delle pagine ma il collegamento tra loro mediante il database. Un altro problema é stato il Raspberry, quando abbiamo eseguito i test della prestazione ci siamo accorti che effettivamente il nostro raspberry era troppo "debole" per poter reggere il nostro programma. La webcam andava a scatti e il raspberry di impallava.
-Per rimediare abbiamo ulitizzato un computer prestatoci dalla scuola.
+I risultati dei test sono tutti andati a buon fine, da come abbiamo provato molteplici volte tutte le pagine funzionano correttamente senza alcun tipo di errore non desiderato.
 
 ### Mancanze e limitazioni conosciute
 
-Per noi é stata difficile la partenza, cioè suddividerci il lavoro e imparare a lavorare come un team. Una volta capito il vero funzionamento del lavoro di squadra e una volta che abbiamo suddiviso i compiti siamo riusciti a arrivare ad avere un vero e proprio team organizzato. Per quanto riguarda le competenze informatiche abbiamo avuto qualche difficolta con l` utilizzo di programmi o linguaggi che non abbiamo mai usato. Come per esempio raspberry, abbiamo dovuto installare il suo sistema operativo (raspbian) e installare un webserver su esso.
+
 
 ## Consuntivo
 
-Ecco come sono andate le ore di lavoro, in base a quelle che abbiamo programmato prima dell`inizio del progetto.
+Il progetto è andato come speravamo e abbiamo rispettato al completo i tempi. Se non fosse soltanto che abbiamo avuto una lezione e mezza in meno dato che le ultime due lezioni sono state prese per fare le presentazioni di tutti i progetti e quindi abbiamo dovuto velocizzare i tempi ma siamo riusciti a rispettare la pianificazione.
 
-![Gantt Preventivo](immagini/GANTT_consuntivo.png)
+
 
 ## Conclusioni
 
