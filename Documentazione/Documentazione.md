@@ -12,6 +12,12 @@
   - [Design dell’architettura del sistema](#design-dell’architettura-del-sistema)
   - [Design dei dati e database](#design-dei-dati-e-database)
 4. [Implementazione](#implementazione)
+  - [Pagina di registrazione](#creazione-pagina-di-registrazione)
+  - [Pagina di login](#creazione-pagina-di-login)
+  - [Pagina di aggiunta di un appartamento](#creazione-pagina-di-aggiunta-di-un-appartamento)
+  - [Pagina di visualizzazione di un singolo appartamento](#creazione-pagina-di-visualizzazione-di-un-singolo-appartamento)
+  - [Pagina principale](#creazione-pagina-principale)
+  - [Pagina riservazioni](#creazione-pagina-riservazioni)
 5. [Test](#test)
   - [Protocollo di test](#protocollo-di-test)
   - [Risultati test](#risultati-test)
@@ -21,7 +27,6 @@
   - [Sviluppi futuri](#sviluppi-futuri)
   - [Considerazioni personali](#considerazioni-personali)
 8. [Sitografia](#sitografia)
-9. [Allegati](#allegati)
 
 
 ## Introduzione
@@ -550,7 +555,7 @@ $conn->close();
 }
 ~~~
 
-### Creazione pagina di aggiunta di una appartamento
+### Creazione pagina di aggiunta di un appartamento
 
 La pagina di aggiunta di un appartamento contiene anche questa un form HTML con vari campi di inserimento di vari tipi che, come spiegato nei requisiti, deve contenere degli input anche per le immagini dell'appartamento e della piantina dell'appartamento.
 All'inizio ho avuto alcuni problemi con le immagini dato che possono anche essere inserite più di un'immagine, ma sono riuscito a risolvere il problema constatando su internet delle soluzioni.
