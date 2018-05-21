@@ -56,7 +56,7 @@ In this project our goal is to produce a web application, capable to handle flat
 
 ### Analisi del dominio
 
-  Il progetto completo verrà presentato principalmente a un pubblico potenzialmente senza conoscenze informatiche. Le interfaccie e le funzionalità dovranno essere intuitive e seguiranno gli standard dei siti di fama più alta.
+  Il progetto completo verrà presentato principalmente a un pubblico potenzialmente senza conoscenze informatiche. Le interfacce e le funzionalità dovranno essere intuitive e seguiranno gli standard dei siti di fama più alta.
 
   
 ### Analisi e specifica dei requisiti
@@ -232,7 +232,7 @@ Questo é il Gantt che abbiamo realizzato in base alla lista dei requisiti che a
 ### Analisi dei mezzi
 Come prodotti fisici abbiamo usato i seguenti:
 
-| Proodotto | Caratteristiche |
+| Prodotto | Caratteristiche |
 |    :--    |    --:    |
 |  PC portatile  |  Windows 10  |
 
@@ -485,7 +485,7 @@ if(isset($_GET['username'])){
 }
 ~~~
 
-Dopodichè l'utente viene reindirizzzato alla pagina principale in modo da rendere possibile il suo login:
+Dopo di che l'utente viene reindirizzato alla pagina principale in modo da rendere possibile il suo login:
 
 ~~~javascript
 //funzione che reindirizza l'utente dopo 3 secondi alla pagina principale
@@ -610,7 +610,7 @@ Le funzioni vengono richiamate quando l'utente preme sui pulsanti "+" di fianco 
 ~~~
 
 Ho dovuto utilizzare degli span perchè non potevo usare altri bottoni nel form dato che ogni bottone contenuto in un form ha di default la funzione di fare da submit e quindi ho dovuto falsare la funzionalità di un bottone.
-Quando l'utente preme sul bottone di submit viene reindirizzato alla pagina php che controlla che i campi obbligatori siano stati inseriti e aggiunge tutti i dati nel database, dopodichè l'utente viene reindirizzato alla pagina principale del sito web dove potrà cercare tranquillamente il suo appartamente che apparirà come ultimo annuncio creato.
+Quando l'utente preme sul bottone di submit viene reindirizzato alla pagina php che controlla che i campi obbligatori siano stati inseriti e aggiunge tutti i dati nel database, dopo di che l'utente viene reindirizzato alla pagina principale del sito web dove potrà cercare tranquillamente il suo appartamento che apparirà come ultimo annuncio creato.
 
 ~~~php
 //avvio la sessione per recuperare l'utente
@@ -773,7 +773,7 @@ Se invece non ci sono errori e l'inserimento va a buon fine l'utente viene reind
 
 ### Creazione pagina di visualizzazione di un singolo appartamento
 
-La pagina di visualizzazione di un singolo appartamento viene richimata quando l'utente clicca su di un appartamento mostrato nella pagina principale. Una volta cliccato si passa nell'url tramite get l'id dell'appartamento da visualizzare in modo da mostrare l'appartamento giusto. La pagina contiene una tabella in cui vengono mostrate tutte le informazioni dell'appartamento in questione che vengono prese tramite delle query sql in php:
+La pagina di visualizzazione di un singolo appartamento viene richiamata quando l'utente clicca su di un appartamento mostrato nella pagina principale. Una volta cliccato si passa nell'url tramite get l'id dell'appartamento da visualizzare in modo da mostrare l'appartamento giusto. La pagina contiene una tabella in cui vengono mostrate tutte le informazioni dell'appartamento in questione che vengono prese tramite delle query sql in php:
 
 ~~~php
 $id;
@@ -1595,7 +1595,7 @@ Le tabelle  sottostanti rappresentano i test che abbiamo svolto in base hai requ
 |---------------|--------------------------------------|
 |**Nome**       |Limitazioni di un utente non registrato|
 |**Riferimento**|REQ-007                              |
-|**Descrizione**|Un utente non registato non può diventare proprietario|
+|**Descrizione**|Un utente non registrato non può diventare proprietario|
 |**Prerequisiti**||
 |**Procedura**     ||
 |**Risultati attesi** |Una utente non registrato non potrà diventare proprietario in quanto non può essere nemmeno trovato nel DataBase.|
@@ -1604,10 +1604,10 @@ Le tabelle  sottostanti rappresentano i test che abbiamo svolto in base hai requ
 |---------------|--------------------------------------|
 |**Nome**       |Un utente non registrato non può vedere i contatti|
 |**Riferimento**|REQ-007                              |
-|**Descrizione**|Un utente non registato non può vedere i dettagli di contatto di un'altro utente proprietario.|
+|**Descrizione**|Un utente non registrato non può vedere i dettagli di contatto di un'altro utente proprietario.|
 |**Prerequisiti**||
 |**Procedura**     | - Entrare nel sito senza aver effettuato un login. - Aprire un qualsiasi appartamento in dettaglio. |
-|**Risultati attesi** |I riquadri contententi i contatti dell'utente proprietario dell'appartamento, non sono visibili.|
+|**Risultati attesi** |I riquadri contenenti i contatti dell'utente proprietario dell'appartamento, non sono visibili.|
 
 |Test Case      | TC-012                              |
 |---------------|--------------------------------------|
@@ -1627,7 +1627,7 @@ I risultati dei test sono tutti andati a buon fine siccome abbiamo testato molte
 
 - Nel TC-006 invece di cercare degli appartamenti liberi nel periodo dato, cerca quelli occupati.
 - Nella pagina principale non esistono dei bottoni a fine pagina che permettano di guardare altri risultati oltre ai 6 pre-caricati.
-- Non esiste nessuna interfaccia grafica che permetta la promozione da utente regisrato a utente proprietario. Questo passaggio avviene direttamente modificando il campo appropriato in PhpMyAdmin. (Questo problema non è poi tanto grave, in quanto è pur sembre un admin a dover compiere la promozione.)
+- Non esiste nessuna interfaccia grafica che permetta la promozione da utente regisrato a utente proprietario. Questo passaggio avviene direttamente modificando il campo appropriato in PhpMyAdmin. (Questo problema non è poi tanto grave, in quanto è pur sempre un admin a dover compiere la promozione.)
 
 ## Consuntivo
 
@@ -1637,11 +1637,11 @@ Il progetto è andato come speravamo e abbiamo rispettato al completo i tempi. S
 
 ## Conclusioni
 
-Siamo contenti di come questo progetto si sia concluso. Entrambi eravamo piuttosto in ansia a cuasa della grande mole di lavoro che ci avrebbe aspettato. Questo progetto é una grande aggiunta alla nostra crescita professionale, ci ha dato sia competenze lavorative che competenze sociali.
+Siamo contenti di come questo progetto si sia concluso. Entrambi eravamo piuttosto in ansia a causa della grande mole di lavoro che ci avrebbe aspettato. Questo progetto é una grande aggiunta alla nostra crescita professionale, ci ha dato sia competenze lavorative che competenze sociali.
 
 ### Sviluppi futuri
 
-Come primo passaggio sarebbe indispensiabile aggiungere tutti i punti trattati nelle "Mancanze e limitazioni conosciute". Inoltre sarebbe necessario una miglior progettazione delle interfaccie grafiche in quanto, quelle presenti adesso, non rendono uno stile in linea con lo scopo del progetto e sufficientemente moderno.
+Come primo passaggio sarebbe indispensabile aggiungere tutti i punti trattati nelle "Mancanze e limitazioni conosciute". Inoltre sarebbe necessario una miglior progettazione delle interfacce grafiche in quanto, quelle presenti adesso, non rendono uno stile in linea con lo scopo del progetto e sufficientemente moderno.
 
 ### Considerazioni personali
 
