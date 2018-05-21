@@ -346,11 +346,22 @@ Questo é il diagramma ER del database generato per consentire lo scambio dei da
 ### Design delle interfacce
 
 Qui di seguito sono riportate le progettazioni iniziali per tutte le pagine che abbiamo realizzato in questo progetto:
+#### Pagina Principale
 ![Pagina Principale](img/Mockup_Index.JPG)
+
+#### Pagina LogIn
 ![LogIn](img/MockUp_Login.jpg)
+
+#### Pagina Registrazione
 ![Registrazione](img/MockUp_Registrazione.jpg)
+
+#### Pagina Aggiunta appartamento
 ![Aggiunta appartamento](img/MockUp_AggiuntaAppartamento.JPG)
+
+#### Pagina Visualizzazione appartamento
 ![Visualizzazione appartamento](img/MockUp_Visualizzazione_Appartamento.jpg)
+
+#### Pagina Gestione riservazioni
 ![Gestione Riservazioni](img/MockUp_Gestione_Riservazioni.JPG)
 
 ## Implementazione
