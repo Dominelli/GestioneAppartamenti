@@ -40,11 +40,7 @@
 
 ### Abstract
 
-At the beginning  teachers in charge showed us the project, how it had to be done and what
-we would have to do to keep an appropriate organization. At the beginning we had some trouble. The main problem was figuring out how all our requirements would be working toghether.
-Another problem was building an appropriate ER-schema, enough elaborated for our situation.
-Anyway, the final result would require some good team work. Both of us have to mix and learn several diffrent experiences. 
-
+In this project our goal is to produce a web application, capable to handle flats and apartments reservation, here in Switzerland.
 
 ### Scopo
 
@@ -217,7 +213,7 @@ Anyway, the final result would require some good team work. Both of us have to m
 
 ### Use case
 
-Questo prodotto sarà un candidato degno di nota per la sostituzione di siti più conosciuti come tutti.ch ed affini.
+Questo prodotto sarà un possibile candidato per la sostituzione di siti più conosciuti come immoscout.ch ed affini.
 
 ### Pianificazione
 
@@ -368,7 +364,7 @@ Qui di seguito sono riportate le progettazioni iniziali per tutte le pagine che 
 
 ### Supporto
 
-Come progetto è soltanto di programmazione, quindi abbiamo utilizzato i nostri computer personale per implementare il codice.
+Non è stato necessario l'utilizzo di nessun supporto in particolare. Essendo questo progetto prettamente legato al lato programmatorio, gli unici hardware sono stati i nostri pc portatili.
 
 ### Creazione pagina di registrazione
 
