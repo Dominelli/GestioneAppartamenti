@@ -1110,7 +1110,443 @@ Avendo adesso confermato l'identità dell'utente, non resta altro che mostrare g
 PHP divide in 2 questo codice. La prima parte è quella standard (ovvero il caricamento degli ultimi 6 appartamenti inseriti). La seconda invece si preoccupa di caricare gli appartamenti provenienti dalla pagina filter.php, che discuteremo in seguito.
 
 ~~~php
+global $appartamenti;
+$appartamenti = array();
 
+$sql = "SELECT id,titolo,n_locali,commenti from appartamento order by id desc limit 6";
+if($conn->query($sql) == FALSE) {
+	echo "<p>C'è stato un errore con la lettura degli appartamenti</p><p>Per favore torna indietro e riprova</p>";
+}
+$result = $conn->query($sql);
+
+
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		array_push($appartamenti, $row);
+	}
+
+	//Leggo il prezzo degli appartamenti
+	global $prezzi;
+	$prezzi = array();
+	for($i = 0; $i < count($appartamenti); $i++) {
+		
+		$id_appartamento = $appartamenti[$i]["id"];
+		$sql = "select prezzo,tipo from prezzo where id_appartamento = ".$id_appartamento;
+	
+		if($conn->query($sql) == FALSE) {
+			echo "<p style='color: red;'>C'è stato un errore con la lettura dei prezzi</p>";
+		}
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()) {
+				array_push($prezzi, $row);
+			}
+		}
+	}
+	
+	//Leggo le immagini degli appartamenti
+	global $immagini;
+	$immagini = array();
+	for($i = 0; $i < count($appartamenti); $i++) {
+		
+		$id_appartamento = $appartamenti[$i]["id"];
+		$sql = "select foto from foto where id_appartamento = '".$id_appartamento."' order by id_appartamento asc limit 1";
+	
+		if($conn->query($sql) == FALSE) {
+			echo "<p style='color: red;'>C'è stato un errore con la lettura delle foto</p>";
+		}
+		$sth = $conn->query($sql);
+		$result = mysqli_fetch_array($sth);
+		
+		array_push($immagini, array($id_appartamento, base64_encode($result[0])));
+	}
+}
+~~~
+
+Conoscendo adesso le informazioni essenziali degli appartamenti che verranno mostrati a schermo, è possibile passare a javascript che si occuperà di rendere queste informazioni elementi visibili. Essendo che questa funzione viene chiamata anche dopo la ricerca tramite filtro, è possibile che le query precedenti non abbiano prodotto alcun risultato. Il codice sottostante si occupa anche di aggiungere un eventuale messaggio che segnali questo evento.
+
+~~~javascript
+//visualizzazone degli appartamenti
+function showRooms(){
+	var appartamenti = [<?php for($i = 0; $i < count($appartamenti); $i++) {
+		echo "['";
+		echo implode("','",$appartamenti[$i]);
+		echo "']";
+		if($i < count($appartamenti)-1) echo ",";
+	}?>];
+	var prezzi = [<?php for($i = 0; $i < count($prezzi); $i++) {
+		echo "['";
+		echo implode("','",$prezzi[$i]);
+		echo "']";
+		if($i < count($prezzi)-1) echo ",";
+	}?>];
+	var immagini = [<?php for($i = 0; $i < count($immagini); $i++) {
+		echo "['";
+		echo implode("','",$immagini[$i]);
+		echo "']";
+		if($i < count($immagini)-1) echo ",";
+	}?>];
+	
+	if(appartamenti.length > 0) {
+		var output = "";
+		//Aggiorno l'ultimo ed il resto degli annunci
+		for(var i = 0; i < appartamenti.length; i++) {
+			output = "<a href='appartamento/appartamento.php?id="+immagini[i][0]+"'>";
+			
+			if(i == 0) output += "<section id='lastRoom' class='room'>";
+			else output += "<section class='room'>"
+			
+			output += "<table><tr><td>"+appartamenti[i][1]+"</td>";
+			output += "<td>"+prezzi[i][0]+".- / "+prezzi[i][1]+"</td>";
+			output += "<td>"+appartamenti[i][2]+" locali</td>";
+			
+			if(immagini[i][1] != "") output += "<td rowspan='2'><img src='data:image/png;base64,"+immagini[i][1]+"' class='roomImg'></td>";
+			else output += "<td rowspan='2'><img src='index/img/default_room.png' class='roomImg'></td>";
+			
+			output += "</tr><tr>";
+			output += "<td colspan='3'>Descrizione<br>"+appartamenti[i][3]+"</td>";
+			output += "</tr></table></section></a>";
+			
+			if(i == 0) document.getElementById("ultimoAnnuncio").innerHTML = output;
+			else document.getElementById("altriAnnunci").innerHTML += output;
+		}
+	}
+	else {
+		for(var i = 0; i <= 1; i++) {
+			var output = "";
+			if(i == 0) {
+				output += "<section id='lastRoom' class='room'>";
+				output += "<table><tr><td><h2>Nessun annuncio trovato</h2></td></tr></table>";
+				document.getElementById("ultimoAnnuncio").innerHTML = output;
+			}
+			else {
+				output += "<section class='room'>";
+				output += "<table><tr><td><h2>Nessun altro annuncio trovato</h2></td></tr></table>";
+				document.getElementById("altriAnnunci").innerHTML = output;
+			}
+		} 
+	}
+	
+	
+	if(appartamenti.length == 1) {
+		var output = "";
+		output += "<section class='room'>"
+		output += "<table><tr><td><h2>Nessun altro annuncio trovato</h2></td></tr></table>";
+		
+		document.getElementById("altriAnnunci").innerHTML = output;
+	}
+}
+~~~
+*Nota:* Le immagini non possono essere direttamente scritte, è prima necessario aggiungere un header con la sua estensione e poi tradurle in base64.
+
+Finalmente è possibile parlare dei filtri di ricerca. L'HTML presente nella pagina è molto basilare: un semplice form organizzato a tabella che permette la scelta tramite un periodo, il numero di locali ed il prezzo massimo.
+
+~~~html
+<form action="index/script/filter.php" method="POST">
+	<table>
+		<tr>
+			<td><img src="index/img/clock.png" width="20px" height="20px"></td>
+			<td><input type="checkbox" name="period" onchange="switchPeriod()"></input>Periodo<br><br></td>
+		</tr>
+		<tr id="periodDates">
+			<td></td>
+			<td>
+				Da:<br>
+				<input type="date" class="navInput" name="fromDate" disabled></input><br>
+				A:<br>
+				<input type="date" class="navInput" name="toDate" disabled></input><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td><img src="index/img/rooms.png" width="20px" height="20px"></td>
+			<td>Numero locali:<br>
+				<select name="rooms_number" class="navInput">
+					<option value="1">1</option>
+					<option value="1.5">1.5</option>
+					<option value="2">2</option>
+					<option value="2.5">2.5</option>
+					<option value="3">3</option>
+					<option value="3.5">3.5</option>
+					<option value="4">4</option>
+					<option value="4.5">4.5</option>
+					<option value="5">5</option>
+					<option value="5.5">5.5</option>
+					<option value="6">6</option>
+					<option value="6.5">6.5</option>
+					<option value="7">7</option>
+					<option value="7.5">7.5</option>
+					<option value="8">8</option>
+				</select><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td><img src="index/img/money.png" width="20px" height="20px"></td>
+			<td>Prezzo: <span id="pricePreview"></span><br><br>
+				<input type="range" class="navInput" step="100" min="500" max="10000" name="price" onchange="displayPricePreview(this)"></input><br>
+				500 CHF &#10140 10'000 CHF
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><br><input type="submit" value="Cerca"></input></td>
+		</tr>
+	</table>
+</form>
+~~~
+
+Dopo l'inserimento dei dati, il pulsante di submit punta direttamente al file filter.php che tramite delle query sql legge gli appartamenti interessati.
+
+~~~php
+<?php
+	if($_SERVER["REQUEST_METHOD"] == "POST") {
+		session_start();
+		
+		$fromDate = "";
+		$toDate = "";
+		if(isset($_POST["period"]) && isset($_POST["fromDate"]) && isset($_POST["toDate"])) {
+			$fromDate = $_POST["fromDate"];
+			$toDate = $_POST["toDate"];
+		}
+		
+		$price = $_POST["price"];
+		$n_locali = $_POST["rooms_number"];
+		
+		//Lettura degli appartamenti dal DB in base ai campi inseriti
+		if($fromDate != "" && $toDate != "") $sql_appartamenti = "select a.id,a.titolo,a.n_locali,a.commenti from appartamento a join prezzo p on p.id_appartamento = a.id join riserva r on r.id_appartamento = a.id where p.prezzo <= $price && a.n_locali = $n_locali && r.data_inizio >= '$fromDate' && r.data_fine <= '$toDate' order by a.id desc limit 6";
+		else $sql_appartamenti = "select a.id,a.titolo,a.n_locali,a.commenti from appartamento a join prezzo p on p.id_appartamento = a.id where p.prezzo <= $price && a.n_locali = $n_locali order by a.id desc limit 6";
+		
+		$appartamenti = array();
+		if($conn->query($sql_appartamenti) == FALSE) {
+			echo "<p>C'è stato un errore con la lettura degli appartamenti</p><p>Per favore torna indietro e riprova</p>";
+		}
+		$result = $conn->query($sql_appartamenti);
+		
+		if ($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()) {
+				array_push($appartamenti, $row);
+			}
+		}
+		
+		//Lettura dei prezzi dal DB in base ai campi inseriti
+		$sql_prezzi = "select p.prezzo,p.tipo from prezzp p join appartamento a on p.id_appartamento = a.id where p.prezzo <= $price && a.n_locali = $n_locali order by id desc limit 6";
+		$prezzi = array();
+		for($i = 0; $i < count($appartamenti); $i++) {
+			
+			$id_appartamento = $appartamenti[$i]["id"];
+			$sql = "select prezzo,tipo from prezzo where id_appartamento = ".$id_appartamento;
+		
+			if($conn->query($sql) == FALSE) {
+				echo "<p style='color: red;'>C'è stato un errore con la lettura dei prezzi</p>";
+			}
+			$result = $conn->query($sql);
+			if ($result->num_rows > 0) {
+				while($row = $result->fetch_assoc()) {
+					array_push($prezzi, $row);
+				}
+			}
+		}
+		
+		//Leggo le immagini degli appartamenti
+		$immagini = array();
+		for($i = 0; $i < count($appartamenti); $i++) {
+			
+			$id_appartamento = $appartamenti[$i]["id"];
+			$sql = "select foto from foto where id_appartamento = '".$id_appartamento."' order by id_appartamento asc limit 1";
+			if($conn->query($sql) == FALSE) {
+				echo "<p style='color: red;'>C'è stato un errore con la lettura delle foto</p>";
+			}
+			$sth = $conn->query($sql);
+			$result = mysqli_fetch_array($sth);
+			
+			if(result[0] != null) array_push($immagini,array($id_appartamento, base64_encode($result[0])));
+		}
+		
+		$_SESSION["appartamenti"] = $appartamenti;
+		$_SESSION["prezzi"] = $prezzi;
+		$_SESSION["immagini"] = $immagini;
+		
+		header("Location: ../../index.php");
+	}
+?>
+~~~
+
+L'output di questo file è ora presente nell'array globale SESSION. Come detto in precedenza, ora è possibile interpretare i risultati della ricerca tramite la seconda parte riservata alla lettura degli appartamenti.
+
+~~~php
+if(isset($_SESSION["appartamenti"]) && isset($_SESSION["prezzi"]) && isset($_SESSION["immagini"])) {
+	$appartamenti = $_SESSION["appartamenti"];
+	$prezzi = $_SESSION["prezzi"];
+	$immagini = $_SESSION["immagini"];
+	
+	$_SESSION["appartamenti"] = null;
+	$_SESSION["prezzi"] = null;
+	$_SESSION["immagini"] = null;
+	
+}
+~~~
+
+Dopo aver eseguito questa porzione di codice, i risultati presenti nell'array globale SESSION non saranno più presenti e verrà richiamata la stessa funzione javascript di prima.
+
+### Creazione pagina riservazioni
+
+Questa pagina possiede 2 form. Il primo è incaricato alla lettura di eventuali riservazioni di un appartamento, mentre in secondo è in grado di aggiungerne.
+
+~~~html
+<main>
+	<form action="" method="GET">
+		<table id="myRooms">
+		</table>
+	</form>
+	
+	<table id="reservations">
+		<tr>
+			<th>Date di inizio riservazione</th>
+			<th>Date di fine riservazione</th>
+		</tr>
+	</table>
+	
+	<form action="aggiungiRiservazione.php" method="POST">
+		<table>
+			<tr>
+				<th colspan="3">Aggiungi riservazione</th>
+			</tr>
+			<tr>
+				<td>Da:<br><input type="date" name="fromDate" required></td>
+				<td>A:<br><input type="date" name="toDate" required></td>
+				<input type="text" name="user" value="<?php echo $username; ?>" style="display: none;">
+				<input type="number" name="id" id="id" style="display: none;">
+			</tr>
+			<tr>
+				<td colspan="3"><input type="submit" value="Aggiungi"></td>
+			</tr>
+		</table>
+	</form>
+</main>
+~~~
+
+Come primo passaggio questa pagina effettua una ricerca di tutti gli appartamenti dell'utente collegato in quel momento. Poi tramite l'apposita funzione javascript vengono mostrati graficamente.
+
+~~~php
+//Leggo gli appartamenti di questo utente
+$sql = "select id,titolo from appartamento where username_prop = '".$username."'";
+if($conn->query($sql) == FALSE) {
+	echo "<p>C'è stato un errore con il tuo login</p><p>Per favore torna indietro e riprova</p>";
+}
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+	$appartamenti = array();
+	while($row = $result->fetch_assoc()) {
+		array_push($appartamenti, $row);
+	}
+}
+~~~
+
+~~~javascript
+//Aggiunge gli appartamenti dell'ultente con i loro radio button
+function addAppartamenti() {
+	var appartamenti = [<?php for($i = 0; $i < count($appartamenti); $i++) {
+		echo "['";
+		echo implode("','",$appartamenti[$i]);
+		echo "']";
+		if($i < count($appartamenti)-1) echo ",";
+	}?>];
+	
+	var output = "";
+	output = "<tr><th>I miei appartamenti</th><th>Selezione</th></tr>";
+	for(var i = 0; i < appartamenti.length; i++) {
+		output += "<tr>";
+		output += "<td>"+appartamenti[i][1]+"</td>";
+		output += "<td><input type='radio' name='roomId' value='"+appartamenti[i][0]+"' required></td>";
+		output += "</tr>";
+	}
+	output += "<tr><td colspan='2'><input type='submit' value='Cerca riservazioni'></td></tr>";
+	
+	document.getElementById("myRooms").innerHTML = output;
+}
+~~~
+
+Dopo che l'utente seleziona l'appartamento interessato e preme il pulsante di ricerca (il primo dei form nel codice html), per ottenere le eventuali date di riservazione, avviene il seguente codice.
+
+~~~php
+//Dopo che l'utente ne effettua la ricerca, carico le date riservate di un appartamento
+if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["roomId"])) {
+	$id_appartamento = $_GET["roomId"];
+	$riservazioni = array();
+	
+	$sql = "select data_inizio,data_fine from riserva where id_appartamento='$id_appartamento'";
+	if($conn->query($sql) == FALSE) {
+		echo "<p>C'è stato un errore con la riservazione</p>";
+	}
+	$result = $conn->query($sql);
+	
+	if ($result->num_rows > 0) {
+		$appartamenti = array();
+		while($row = $result->fetch_assoc()) {
+			$fromDate = date("d-m-Y", strtotime($row["data_inizio"]));
+			$toDate = date("d-m-Y", strtotime($row["data_fine"]));
+			array_push($riservazioni, array($fromDate, $toDate));
+		}
+	}
+}
+~~~
+
+Adesso verranno mostrati tramite una funzione javascript.
+
+~~~javascript
+function showRiservazioni() {
+	var riservazioni = [<?php for($i = 0; $i < count($riservazioni); $i++) {
+		echo "['";
+		echo implode("','",$riservazioni[$i]);
+		echo "']";
+		if($i < count($riservazioni)-1) echo ",";
+	}?>];
+	var id_appartamento = <?php echo $id_appartamento; ?>;
+	
+	var output = "";
+	for(var i = 0; i < riservazioni.length; i++) {
+		output += "<tr>";
+		output += "<td>"+riservazioni[i][0]+"</td>";
+		output += "<td>"+riservazioni[i][1]+"</td>";
+		output += "</tr>";
+	}
+	
+	document.getElementById("reservations").innerHTML += output;
+	document.getElementById("id").value = id_appartamento;
+	
+	var radioButtons = document.getElementsByName("roomId");
+	for(var i = 0; i < radioButtons.length; i++) {
+		console.log(id_appartamento);
+		if(radioButtons[i].value == id_appartamento) document.getElementsByName("roomId")[i].checked = true;
+	}
+}
+~~~
+
+Quando invece l'utente è pronto per aggiungere una nuova riservazione (tramite il secondo dei 2 form), verrà eseguito il codice presente nella pagina aggiungiRiservazione.php
+
+~~~php
+<?php
+	session_start();
+	global $id_appartamento;
+	$id_appartamento = 0;
+	
+	//Dopo che l'utente ne effettua la ricerca, carico le date riservate di un appartamento
+	if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fromDate"]) && isset($_POST["toDate"]) && isset($_POST["user"])) {
+		$fromDate = date("Y-m-d",strtotime($_POST["fromDate"]));
+		$toDate = date("Y-m-d",strtotime($_POST["toDate"]));
+		$id = $_POST["id"];
+		$user = $_POST["user"];
+		
+		//echo "insert into riserva (data_inizio, data_fine, id_appartamento, username_utente) values ('$fromDate', '$toDate', $id, '$user')";
+		
+		$sql = "insert into riserva(data_inizio, data_fine, id_appartamento, username_utente) values ('$fromDate', '$toDate', $id, '$user')";
+		if($conn->query($sql) == FALSE) echo "<br>Errore";
+		
+		$conn->close();
+	}
+	
+	header("Location: riservazioni.php");
+?>
 ~~~
 
 ### Creazione Database
